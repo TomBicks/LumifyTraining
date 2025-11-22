@@ -1,0 +1,32 @@
+<!doctype html> <!-- browser now expects the document to be html -->
+<html>
+	<head>
+		<title>Testing Front-End</title> <!-- name of the document (shows in browser) -->
+		<style>
+			body {
+				font-family: Verdana, sans-serif;
+				text-align: center;
+			}
+			h4 {
+				color: indigo;
+				letter-spacing: 4px;
+			}
+		</style> <!-- define styles for the current document without need for CSS file -->
+		<meta charset="utf-8"> <!-- details about the document, like keywords (such as UTF-8 character set) -->
+		<script> <!-- add client-side scripts to control behaviour --> </script>
+		<link rel="stylesheet" href="CSSTest.css"> <!-- mainly used to link to external style sheets -->
+	</head>
+	<body>
+		<nav> <!-- defines a set of navigation links --> 
+			<a href="otherPage.html">Other Page</a>
+			<a href="yetAnotherPage.html">Yet Another Page</a>
+		</nav>
+	
+		<h4>Send me an email!</h4>
+		<form id="gridstyle"> <!-- collect data from user --> 
+			<div> <input type="text" id="emailHeader"> </div>
+			<div> <input type="text" id="emailBody"> </div>
+			<div> <button style="color:red">Send</button> </div>
+		</form>
+	</body>
+</html>

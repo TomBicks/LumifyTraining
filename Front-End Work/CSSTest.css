@@ -1,0 +1,56 @@
+/*Apply to ID*/
+#ID {
+	
+}
+
+/*Apply to Class*/
+.Class {
+	
+}
+
+/*Apply to tag with specific type*/
+input[type=text] {
+	color: red;
+}
+
+/*Apply to tag/id/class within other tags/ids/classes*/
+div>#ID>.Class {
+	
+}
+
+/*----------*/
+
+form {
+	border-style: solid;
+	border-width: 2px;
+	padding: 4px;
+	animation-name: open;
+	animation-duration: 2s;
+}
+
+@keyframes open {
+	/*height*/
+	from {
+		height: 10px;
+	}
+	to {
+		height: 150px;
+	}
+	/*colour*/
+	from {
+		color:white;
+	}
+	to {
+		color:black;
+	}
+}
+
+#gridstyle {
+	display: grid;
+	grid-template-columns: 1fr 1fr; /*two columns*/
+	grid-template-rows: 70px 70px;
+}
+
+body {
+	background-color: gray;
+}
