@@ -1,9 +1,18 @@
 //Enabling Strict Mode is better for determining errors and writing more secure code
 
-function navButton (name) {
+function navButton(name) {
 	this.name = name;
-	navButton.prototype.getNoOfNavButtons: function() {
-		console.log("This is a prototyped function, meaning every object of navButton all have pointers to a single function, rather than each having their own copy of the same function. Good if the function would do the same thing for every single instance.")
+	}
+}
+
+function exitButton(name) {
+	this.name = name;
+}
+
+function Button(type) {
+	this.type = type
+	this.getNoOfButtonsOfType: function() {
+		console.log("This is an example of an inherited function, via prototyping. By having tthis Button object constructor, we can create a prototype of both nav and exit buttons, thus meaning any nav and exit buttons created will have a reference to this Button prototype, and therefore have a reference to the 'getNoOfButtonsOfType' function");
 	}
 }
 
