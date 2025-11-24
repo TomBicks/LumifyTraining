@@ -38,10 +38,20 @@ form {
 	}
 	/*colour*/
 	from {
-		color:white;
+		background-color:black;
 	}
 	to {
-		color:black;
+		background-color:white;
+	}
+	/*rotation*/
+	0% {
+		transform: rotate(50deg);
+	}
+	45% {
+		background-color: green;
+	}
+	100% {
+		transform: rotate(0deg);
 	}
 }
 
