@@ -21,3 +21,10 @@ exitButton.prototype = new Button("exitButton");
 
 var homeButton = new navButton("Home");
 homeButton.getNoOfButtonsOfType();
+
+
+Text1 = "' is the symbol!"
+Text2 = "` is the symbol!"
+
+console.log('By using single quotes, we can substitute a value into a string: %s', Text1);
+console.log(`By using a backtick, another way to substitute a string is this: ${Text2}`);
