@@ -57,3 +57,6 @@ else {
 
 var x = 3.123456789;
 console.log("Value of x to 3 characters, or 2 decimal places in this case, is: " + x.toPrecision(3));
+
+let sentence = "I \"love\" front-end!"; //backslash before the quotation (\") allows its usage in a string without confusing the compiler.
+console.log("String defined with escape characters; ", sentence)
