@@ -66,3 +66,21 @@ let multiline_string =
 			string which
 			spans multiple lines.`;
 console.log("Backticks allow for a string that occurs over multiple linesm like this one: \n", multiline_string);
+
+
+//String Variable and Object Comparison Test
+var name_str1 = "David";
+var name_str2 = "David";
+
+var name_obj1 = new String("David");
+var name_obj2 = new String("David");
+
+console.log("Is name_str1 == name_str2? ", name_str1 == name_str2);
+console.log("Is name_str1 == name_obj1? ", name_str1 == name_obj1);
+console.log("Is name_obj1 == name_obj2? ", name_obj1 == name_obj2);
+console.log("Is the valeuOf name_obj1 double equal to valeuOf name_obj2? : ", name_obj1.valueOf() == name_obj2.valueOf());
+
+console.log("Is name_str1 === name_str2? ", name_str1 === name_str2);
+console.log("Is name_str1 === name_obj1? ", name_str1 === name_obj1);
+console.log("Is name_obj1 === name_obj2? ", name_obj1 === name_obj2);
+console.log("Is the valeuOf name_obj1 triple equal to valeuOf name_obj2? : ", name_obj1.valueOf() === name_obj2.valueOf());
