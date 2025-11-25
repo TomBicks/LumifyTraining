@@ -30,3 +30,9 @@ var Text2 = "` is the symbol!"
 
 console.log('By using single quotes, we can substitute a value into a string: %s', Text1);
 console.log(`By using a backtick, another way to substitute a string is this: ${Text2}`);
+
+let Var1 = "Test"
+/*Unlike Var, Let does not permit re-declaration.
+once a variable has been declared with let,
+it can be updated but not redeclared*/
+//let Var1 = "Test2" would return an error
