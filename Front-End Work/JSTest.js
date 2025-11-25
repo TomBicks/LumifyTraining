@@ -36,3 +36,21 @@ let Var1 = "Test"
 once a variable has been declared with let,
 it can be updated but not redeclared*/
 //let Var1 = "Test2" would return an error
+
+alert("This is an alert message.")
+
+//Gives a prompt to the user
+let name = prompt("The prompt message is: \nPlease enter your name: ");
+console.log("You have entered" + name)
+
+//Gives a prompt to the user, but with the text input already filled as a default value
+let subject = prompt("Please enter your selected subject name", "Front-End Development");
+console.log("Your selected subject is " + subject);
+
+let output = confirm("Confirmation message: \nReady to move on to the next demo?");
+if(output) {
+	console.log("You pressed OK.");
+}
+else {
+	console.log("You pressed Cancel.");
+}
