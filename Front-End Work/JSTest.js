@@ -54,3 +54,6 @@ if(output) {
 else {
 	console.log("You pressed Cancel.");
 }
+
+var x = 3.123456789;
+console.log("Value of x to 3 characters, or 2 decimal places in this case, is: " + x.toPrecision(3));
