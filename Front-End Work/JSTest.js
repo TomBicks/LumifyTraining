@@ -1,4 +1,6 @@
 //Enabling Strict Mode is better for determining errors and writing more secure code
+"use strict";
+
 console.log("JavaScript File has Loaded");
 
 function navButton(name) {
@@ -23,8 +25,8 @@ var homeButton = new navButton("Home");
 homeButton.getNoOfButtonsOfType();
 
 
-Text1 = "' is the symbol!"
-Text2 = "` is the symbol!"
+var Text1 = "' is the symbol!"
+var Text2 = "` is the symbol!"
 
 console.log('By using single quotes, we can substitute a value into a string: %s', Text1);
 console.log(`By using a backtick, another way to substitute a string is this: ${Text2}`);
