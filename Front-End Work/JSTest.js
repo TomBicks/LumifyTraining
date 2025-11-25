@@ -60,3 +60,9 @@ console.log("Value of x to 3 characters, or 2 decimal places in this case, is: "
 
 let sentence = "I \"love\" front-end!"; //backslash before the quotation (\") allows its usage in a string without confusing the compiler.
 console.log("String defined with escape characters; ", sentence)
+
+let multiline_string = 
+`			This is a
+			string which
+			spans multiple lines.`;
+console.log("Backticks allow for a string that occurs over multiple linesm like this one: \n", multiline_string);
