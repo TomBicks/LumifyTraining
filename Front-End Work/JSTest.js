@@ -124,3 +124,20 @@ console.log("Splitting the line on space: ", line.split(" "));
 var myString = "                Hey, this is JS                      "; //Doesn't trim any spaces between the words however
 console.log("Before the trim operation : " + myString);
 console.log("After the trim operation : " + myString.trim());
+
+//Dates
+var time = new Date(); //Defaults to the current time, date, timezone, etc. and all other information
+console.log("Current time: \n", time);
+
+time = new Date(2019, 9, 10, 15, 21, 43); //Leading 0's are not allowed in strict mode
+console.log("Specific time (Year, Month, Dat, Hour, Min, Sec): \n", time);
+
+time = new Date("November 6, 2019");
+console.log("Initialized with a date string : \n", time);
+
+time = new Date("2019-10-20");
+console.log("Initialized with (yyyy-mm-dd): \n", time);
+
+time = new Date();
+console.log("My timezone offset in minutes: ", time.getTimezoneOffset());
+console.log("The UTC time is: ", time.toUTCString());
