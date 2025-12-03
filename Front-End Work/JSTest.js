@@ -151,7 +151,10 @@ function testFunction(number) {
 	for(let i = 0; i < number; i++) {
 		console.log("i: ", i);
 	}
-	//console.log("Value of i: ", i);
+	//This will cause an error; this is how to catch errors, using try and catch blocks
+	try { console.log("Value of i: ", i); }
+	catch(err) { console.log("Error message is: ", err.message); }
+	
 	
 	//Var extends to the scope of the function, meaning it will not cause an error to call it
 	for(var j = 0; j < number; j++) {
@@ -180,3 +183,26 @@ console.log("Area of a triangle with base of 5 and height of 4: ", triangleArea(
 //Defining an anonymous function; this will allow 'x' to be ran as if it's a function, and return the value by substituting for 'f'
 var x = function(f) { return 5 * (f-32) / 9 };
 console.log("50 Farenheit to Celsius: ", x(50));
+
+
+//How to throw our own errors
+function isEven() {
+	
+	var a;
+	a = document.getElementById("num").value;
+
+	try {
+		if((a % 2) == 0) {
+			console. log("The entered number is even");
+		}
+		else {
+			throw "not an even number";
+		}
+	}
+	catch(msg) {
+		console. log("The entered value is " + msg);
+	}
+	finally {
+		console.log("This message is sent regardless of try/catch result.");
+	}
+}
