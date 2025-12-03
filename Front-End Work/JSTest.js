@@ -395,3 +395,46 @@ console.log("dogBreeds.slice(3,5) = \n", slice0fDogBreeds);
 //Slice(-3,-1) will grab the array 3rd from last index (here, index 4) up to but *not* including the last index (so including index 5)
 slice0fDogBreeds = dogBreeds.slice(-3, -1);
 console. log("dogBreeds.stice(-3, -1) = \n", slice0fDogBreeds);
+
+
+//Concatenating and Sorting Arrays
+//Concat orders the array from - calling array, first argument array, second argument array, etc
+let europeOffices = ['Bucharest', 'Prague', 'Rome'];
+let africaOffices = ['Durban', 'Nairobi'];
+let oceaniaOffices = ['Christchurch', 'Sydney'];
+
+let allOffices = africaOffices.concat(oceaniaOffices, europeOffices);
+console.log("Offices after concat: ", allOffices); //Concat produces another array entirely
+console.log("African offices after concat: ", africaOffices); //Untouched
+console.log("Oceanic offices after concat: ", oceaniaOffices); //Untouched
+console.log("European offices after concat: ", europeOffices); //Untouched
+
+//Sorting arrays
+//Sorting strings will be sorted in alphabetical order
+let sortedOffices = allOffices.sort();
+console.log("Sorted offices: ", sortedOffices);
+console.log("allOffices after sorting sortedOffices (a sorted copy of allOffices): ", allOffices); //Has been sorted too, because sortedOffices is a shallow copy
+
+//If we want to keep the original order, there are two main methods
+allOffices = africaOffices.concat(oceaniaOffices, europeOffices); //Undo previous changes
+
+//We can use the spread syntax to break down the array into items and sort them like that
+console.log("Sorted copy of allOffices using spread syntax: \n", [ ...allOffices].sort());
+
+//We can also use array.slice to create a deep copy, and sort that, now knowing it's a seperate array from allOffices
+console.log("Sorted copy of allOffices using slice: \n", allOffices.slice().sort());
+
+console.log("allOffices after sorting: \n", allOffices); //Untouched
+
+
+//Sorting numbers, by default, doesn't work how you'd expect
+let numArray = [20, 50, 3, 10, 35];
+console.log("numArray after sorting: \n", numArray.slice().sort()); //Sorts in order of the first character, then the next, outputting [10, 20, 3, 35, 50] - Not likely what we want
+
+//By giving sort an anonymous compare function, we can sort; if the function returns a negative, it means a is less than be and should therefore appear before b, and so on
+numArray.sort(function(a,b) { return a-b; });
+console.log("numArray after sorting with compare function: \n", numArray);
+
+//This same principle can be applied in reverse to give us a reverse sort
+numArray.sort(function(a,b) { return b-a; });
+console.log("numArray after reverse sorting with compare function: \n", numArray);
