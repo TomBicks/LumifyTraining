@@ -146,18 +146,33 @@ console.log("The UTC time is: ", time.toUTCString());
 
 
 //Functions
-function testFunction() {
+function testFunction(number) {
 	//Let does not extend to beyond the scope of the for loop, causing an error when trying to call it
-	for(let i = 0; i < 10; i++) {
+	for(let i = 0; i < number; i++) {
 		console.log("i: ", i);
 	}
 	//console.log("Value of i: ", i);
 	
 	//Var extends to the scope of the function, meaning it will not cause an error to call it
-	for(var j = 0; j < 10; j++) {
+	for(var j = 0; j < number; j++) {
 		console.log("j: ", j);
 	}
 	console.log("Value of j: ", j);
 }
+testFunction(5);
 
-testFunction();
+//Different way to define a function
+let kmToM = km => {
+	return km * 1000;
+}
+var metres = kmToM(5);
+console.log("Km to Metres: ", metres);
+
+//Defining a function with an implicit return
+let kmToMImplicit = km => km * 1000;
+var metres = kmToM(5);
+console.log("Km to Metres (Implicit): ", metres);
+
+//Defining a function with two parameters and an implicit return
+let triangleArea = (base, height) => base * height * 0.5;
+console.log("Area of a triangle with base of 5 and height of 4: ", triangleArea(5, 4));
