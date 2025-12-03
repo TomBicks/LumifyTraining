@@ -345,3 +345,25 @@ console.log("Before changing deepCopy, prices = \n", prices);
 
 deepCopy[0] = "Eighty";
 console.log("After changing deepCopy, prices = \n", prices);
+
+
+//Array manipulation
+//Push - Adds a value to the back of the array
+prices.push(1000);
+console.log("Contents of prices after push: ", prices);
+
+//Unshift - Adds a value to the front of the array
+prices.unshift(0);
+console.log("Contents of prices after unshift: ", prices);
+
+//Pop - Removes the last value from the array
+prices.pop();
+console.log("Contents of prices after pop: ", prices);
+
+//Shift - Removes the value index from the array
+prices.shift();
+console.log("Contents of prices after shift: ", prices);
+
+//Delete - Empties a value from a specific index (this doesn't mean the index is gone, but rather the value is 'empty')
+delete prices[2];
+console.log("Contents of prices after delete at index 2: ", prices);
