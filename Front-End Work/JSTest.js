@@ -246,3 +246,31 @@ function higherThan70(score) {
 }
 //Runs the function for each item in the array
 testScores.forEach(higherThan70);
+
+
+//Fixed and Rest parameters in JS
+let add;
+
+//using "...nums" means we can supply as many arguments as we want, and the function will use them all in an array
+function sum(...nums) {
+	add = 0;
+	for(var num of nums) {
+		add += num;
+	}
+	return add;
+}
+
+console.log("Sum of 1, 2, 3 and 4 is: ", sum(1, 2, 3, 4));
+
+//By defining a rest parameter after a fixed parameter, we can use both and distuinguish them from each other
+//NOTE!! Rest parameters MUST be the last parameter, nor can there be multipl rest parameters, as they are indistuingihusable from eahc other.
+function studentDetails(name, ...courses) {
+	console.log("Name of student is: ", name);
+	
+	let sub;
+	for(sub = 0; sub < courses.length; sub++) {
+		console.log(courses[sub]);
+	}
+}
+
+studentDetails("Chris", "JavaScript", "Python", "Scala");
