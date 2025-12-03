@@ -206,3 +206,43 @@ function isEven() {
 		console.log("This message is sent regardless of try/catch result.");
 	}
 }
+
+
+//Arrays
+let array1 = [1, 2, "C", "D", 5];
+let array2 = new Array("A", "E", "I", "O", "U");
+let array3 = []; //0 will be undefined
+array3[1] = "A";
+array3[2] = "B";
+array3[3] = "C";
+array3[4] = "D";
+array3[5] = "E";
+
+function oldAndNewArraySyntax(array) {
+	//Old syntax way to iterate over an array
+	for(let i = 0; i < array.length; i++) {
+		console.log("Old syntax result: ", array[i]);
+	}
+
+	//New ES6 syntax way to iterate over an array
+	for(let item of array) {
+		console.log("New ES6 syntax result: ", item);
+	}
+}
+oldAndNewArraySyntax(array1);
+oldAndNewArraySyntax(array2);
+oldAndNewArraySyntax(array3);
+
+//Running a function for each item in an array
+let testScores = [3, 64, 81, 91, 39, 73];
+
+function higherThan70(score) {
+	if(score > 70) {
+		console.log(`The score of ${score} is higher than 70!`);
+	}
+	else {
+		console.log(`The score of ${score} is lower than 70!`);
+	}
+}
+//Runs the function for each item in the array
+testScores.forEach(higherThan70);
