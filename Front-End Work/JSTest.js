@@ -55,6 +55,7 @@ else {
 	console.log("You pressed Cancel.");
 }
 
+
 var x = 3.123456789;
 console.log("Value of x to 3 characters, or 2 decimal places in this case, is: " + x.toPrecision(3));
 
@@ -125,6 +126,7 @@ var myString = "                Hey, this is JS                      "; //Doesn'
 console.log("Before the trim operation : " + myString);
 console.log("After the trim operation : " + myString.trim());
 
+
 //Dates
 var time = new Date(); //Defaults to the current time, date, timezone, etc. and all other information
 console.log("Current time: \n", time);
@@ -141,3 +143,21 @@ console.log("Initialized with (yyyy-mm-dd): \n", time);
 time = new Date();
 console.log("My timezone offset in minutes: ", time.getTimezoneOffset());
 console.log("The UTC time is: ", time.toUTCString());
+
+
+//Functions
+function testFunction() {
+	//Let does not extend to beyond the scope of the for loop, causing an error when trying to call it
+	for(let i = 0; i < 10; i++) {
+		console.log("i: ", i);
+	}
+	//console.log("Value of i: ", i);
+	
+	//Var extends to the scope of the function, meaning it will not cause an error to call it
+	for(var j = 0; j < 10; j++) {
+		console.log("j: ", j);
+	}
+	console.log("Value of j: ", j);
+}
+
+testFunction();
