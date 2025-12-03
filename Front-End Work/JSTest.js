@@ -161,18 +161,22 @@ function testFunction(number) {
 }
 testFunction(5);
 
-//Different way to define a function
+//Different way to define an arrow function
 let kmToM = km => {
 	return km * 1000;
 }
 var metres = kmToM(5);
 console.log("Km to Metres: ", metres);
 
-//Defining a function with an implicit return
+//Defining an arrow function with an implicit return
 let kmToMImplicit = km => km * 1000;
 var metres = kmToM(5);
 console.log("Km to Metres (Implicit): ", metres);
 
-//Defining a function with two parameters and an implicit return
+//Defining an arrow function with two parameters and an implicit return
 let triangleArea = (base, height) => base * height * 0.5;
 console.log("Area of a triangle with base of 5 and height of 4: ", triangleArea(5, 4));
+
+//Defining an anonymous function; this will allow 'x' to be ran as if it's a function, and return the value by substituting for 'f'
+var x = function(f) { return 5 * (f-32) / 9 };
+console.log("50 Farenheit to Celsius: ", x(50));
