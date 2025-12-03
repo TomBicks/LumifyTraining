@@ -326,3 +326,22 @@ console. log("Value of b : " + b);
 [,...a] = numbers;
 console. log("Values after [, ...a] = numbers:\n")
 console. log("Value of a : " + a);
+
+
+//Shallow and Deep Copies of Arrays
+let prices = new Array(10, 20, 36, 40, 47);
+
+//This acts as a shallow copy, essentially being a pointer back to the original prices array
+//This is done by default, as creating an entirely new array each time would be taxing memory-wise
+let shallowCopy = prices;
+console.log("Before changing shallowCopy, prices = \n", prices);
+
+shallowCopy [0] = 70;
+console.log("After changing shallowCopy, prices = \n", prices);
+
+//Using array.slice, we can create an entirely new copy of the array
+let deepCopy = prices.slice();
+console.log("Before changing deepCopy, prices = \n", prices);
+
+deepCopy[0] = "Eighty";
+console.log("After changing deepCopy, prices = \n", prices);
