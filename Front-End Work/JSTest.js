@@ -274,3 +274,25 @@ function studentDetails(name, ...courses) {
 }
 
 studentDetails("Chris", "JavaScript", "Python", "Scala");
+
+
+//Spreading arrays - transforms arrays into a spread of numbers, thereby making them not an array
+let array4 = [21,11,43,7];
+console.log("array4 without spread: ", array4);
+console.log("array4 with spread: ", ...array4);
+
+//The function, much like sum above, is expecting a rest parameter; an array will not function here, so spreading out the numbers will mean they can be added back into an array within the function
+console.log("Min of array4 (without spread): ", Math.min(array4)); //returns NaN (Not a Number)
+console.log("Min of array4 (with spread): ", Math.min(...array4)); //Returns 7
+
+//Multiple arrays can be spread together, as they are now just a series of numbers, made into one
+let array5 = [13, 68, 9, 2];
+console.log("Min of array4 and array5: ", Math.min(...array4, ...array5));
+console.log("Min of array4 and array5 and more: ", Math.min(...array4, ...array5, 1));
+
+//Not only arrays can be spread; strings can be too
+let myName = "Thomas Bickley";
+console.log("My name (spread): ", ...myName);
+
+//We can also create arrays from, for example, spread strings, using Array.from()
+console.log("Array formed with Array.from(myName):", Array.from(myName));
