@@ -367,3 +367,31 @@ console.log("Contents of prices after shift: ", prices);
 //Delete - Empties a value from a specific index (this doesn't mean the index is gone, but rather the value is 'empty')
 delete prices[2];
 console.log("Contents of prices after delete at index 2: ", prices);
+
+
+//Array Splicing Function Parameters
+let dogBreeds = ['Labrador', 'Beagle', 'Golden Retriever','Doberman', 'German Shepherd', 'Boxer'];
+console. log("Original contents of dogBreeds: \n", dogBreeds);
+
+/*Splice arguments are;
+- index from which values should be inserted at, 
+- number of elements that need to be removed from the index given, 
+- rest parameter of all the values to insert*/
+dogBreeds.splice(3, 0, 'Poodle', 'Dalmatian');
+console. log("dogBreeds after splice(3, 0, 'Poodle', 'Dalmation': \n", dogBreeds);
+
+dogBreeds.splice(1, 2, 'Indi');
+console. log("dogBreeds after splice(1, 2, 'Indi': \n", dogBreeds);
+
+//We can also slice a portion of the dogBreeds array, to create our own array, with only the portion of indexes we want
+//Slice(3) will grab the array from index 3 onwards, as a now seperate array
+let slice0fDogBreeds = dogBreeds.slice(3);
+console. log("dogBreeds.slice(3) =\n", slice0fDogBreeds);
+
+//Slice(3,5) will grab the array from index 3, up to but *not* including index 5
+slice0fDogBreeds = dogBreeds.slice(3, 5);
+console.log("dogBreeds.slice(3,5) = \n", slice0fDogBreeds);
+
+//Slice(-3,-1) will grab the array 3rd from last index (here, index 4) up to but *not* including the last index (so including index 5)
+slice0fDogBreeds = dogBreeds.slice(-3, -1);
+console. log("dogBreeds.stice(-3, -1) = \n", slice0fDogBreeds);
