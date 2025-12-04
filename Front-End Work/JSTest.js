@@ -472,3 +472,44 @@ console.log("The fifthItem is: ", fifthItem);
 //We can also delete properties too, using .delete (it doesn't just leave an empty value like it does with arrays)
 delete fifthItem.price;
 console.log("The fifthItem (after deleting price) is: ", fifthItem);
+
+
+//This Keyword
+//Using this in a global context points to the global window object
+console.log("Is this === window?: ", this === window);
+console.log("What is 'this'?: ", this);
+
+//Variables declared in a global context (outside an object or a function) are actually made properties of window
+var age = 35;
+console.log("window.age: ", window.age);
+console.log("this.age: ", this.age);
+
+this.age = 55;
+console.log("window.age: ", window.age);
+console.log("this.age: ", this.age);
+
+//Using this in an object points to the object itself
+let myCar = {make: "Volvo", model: "S60", price: 42000,
+	printDetails() {
+		console.log(`
+			Make: ${this.make}
+			Model: ${this.model}
+			Price: $${this.price}`);
+	},
+	engine: {
+		cylinders: 4,
+		displacement: 2000,
+		horsepower: 250,
+		printDetails() {
+			console. log(`
+				Displacement: ${this.displacement}cc
+				Horsepower: ${this.horsepower}bhp`);
+		}
+	}
+};
+
+console.log("The fields of myCar: ");
+myCar.printDetails();
+
+console.log("The details of myCar.engine: ");
+myCar.engine.printDetails();
