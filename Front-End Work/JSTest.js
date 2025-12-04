@@ -501,7 +501,7 @@ let myCar = {make: "Volvo", model: "S60", price: 42000,
 		displacement: 2000,
 		horsepower: 250,
 		printDetails() {
-			console. log(`
+			console.log(`
 				Displacement: ${this.displacement}cc
 				Horsepower: ${this.horsepower}bhp`);
 		}
@@ -513,3 +513,90 @@ myCar.printDetails();
 
 console.log("The details of myCar.engine: ");
 myCar.engine.printDetails();
+
+//However, we can also instead seperate the function definition from the object and instead still have the 'this' keyword reference a particular object by explicitly linking the object to the function call
+function printCarDetails() {
+	console.log(`
+		Make: ${this.make}
+		Model: ${this.model}
+		Price: $${this.price}`);
+}
+
+function printEngineDetails() {
+	console.log(`
+		Displacement: ${this.displacement}cc
+		Horsepower: ${this.horsepower}bhp`);
+}
+
+//We can link functions to an object via three specific methods
+//1. The Call Function - means this, within the function, will refer to the object being called
+//Benefits are that the function can be reused for different objects (any properties from the function not in the object will be undefined however)
+console.log("Car details using call function: \n");
+printCarDetails.call(myCar);
+console.log("Engine details using call function: \n");
+printEngineDetails.call(myCar.engine);
+
+//2. Object Constructors - as done before, objects can be created with a property that points to a single function, rather than copies of a function for each instance of an object
+function Car(make, model, price, engine) {
+	this.make = make;
+	this.model = model;
+	this.price = price;
+	this.engine = engine;
+	this.details = function() {
+		console.log(`
+		Make: ${this.make}
+		Model: ${this.model}
+		Price: $${this.price}`);
+	}
+	this.engine.details = function() {
+		console.log(`
+		Displacement: ${this.displacement}cc
+		Horsepower: ${this.horsepower}bhp`);
+	}
+}
+
+let s60Engine = {
+	cylinders: 4,
+	displacement: 2000,
+	horsepower: 250
+}
+let myCar2 = new Car("Volvo", "S60", 42000, s60Engine);
+console.log(`My car is a ${myCar2.make} ${myCar2.model}.`);
+console.log("My car details: \n");
+myCar2.details();
+console.log("My car engine details: \n");
+myCar2.engine.details();
+
+let caymanEngine = {
+	cylinders: 4,
+	displacement: 2500,
+	horsepower: 350
+}
+let yourCar = new Car("Porsche", "718", 61000, caymanEngine);
+console.log(`Your car is a ${yourCar.make} ${yourCar.model}.`);
+console.log("Your car details: \n");
+yourCar.details();
+console.log("Your car engine details: \n");
+yourCar.engine.details();
+
+//Not dissimilar to working with classes, and in fact JS allows for classes to be defined (as a different syntax for the same thing)
+//This is functionally identical to the Car constructor we defined previously
+class Vehicle {
+	constructor(make, model, price, engine) {
+		this.make = make;
+		this.model = model;
+		this.price = price;
+		this.engine = engine;
+	}
+	
+	details = function() {
+		console.log(`
+		Make: ${this.make}
+		Model: ${this.model}
+		Price: $${this.price}`);
+	}
+}
+
+let myCar3 = new Vehicle("Volvo", "S60", 42000, s60Engine);
+console.log("My vehicle details (created using a class): \n");
+myCar3.details(); //Identical!
