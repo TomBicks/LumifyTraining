@@ -449,7 +449,7 @@ console.log(`secondItem has a name of ${secondItem["name"]} and a price of ${sec
 console.log(`The brand of firstItem is ${firstItem.brand} whilst that of secondItem is ${secondItem.brand}.`);
 
 const USD_to_EUR = 0.9;
-//We can't just make values calculations when assigning them; the value will be NaN
+//We can't just make calculations with properties when assigning them; the properties' value will be NaN
 let thirdItem = {id: 3, name: "headphones", price: 84, brand: "Sonical", priceEUR: this.price * USD_to_EUR};
 console.log("Price of thirdItem in Euros: ", thirdItem.priceEUR);
 
@@ -460,3 +460,15 @@ let fourthItem = {id: 4, name: "glasses", price: "150",
 	
 console.log("Price of fourthItem in Euros: ", fourthItem.priceEUR());
 console.log("Price of fourthItem in Euros: ", fourthItem.priceEURES6());
+
+//We can also create blank objects like this
+let fifthItem = new Object();
+fifthItem.id = 5;
+fifthItem.name = "phone";
+fifthItem.price = 450;
+
+console.log("The fifthItem is: ", fifthItem);
+
+//We can also delete properties too, using .delete (it doesn't just leave an empty value like it does with arrays)
+delete fifthItem.price;
+console.log("The fifthItem (after deleting price) is: ", fifthItem);
