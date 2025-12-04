@@ -438,3 +438,25 @@ console.log("numArray after sorting with compare function: \n", numArray);
 //This same principle can be applied in reverse to give us a reverse sort
 numArray.sort(function(a,b) { return b-a; });
 console.log("numArray after reverse sorting with compare function: \n", numArray);
+
+
+//JavaScript Object Basics - not unlike associative arrays, or even dictionaries
+let firstItem = {id: 1, name: "laptop", price: 500}; //This is a JS object, representing an item (a laptop)
+let secondItem = {id: 2, name: "watch", price: 240, brand: "Sonical"};
+
+console.log(`firstItem has a name of ${firstItem.name} and a price of ${firstItem.price}.`);
+console.log(`secondItem has a name of ${secondItem["name"]} and a price of ${secondItem["price"]}.`);
+console.log(`The brand of firstItem is ${firstItem.brand} whilst that of secondItem is ${secondItem.brand}.`);
+
+const USD_to_EUR = 0.9;
+//We can't just make values calculations when assigning them; the value will be NaN
+let thirdItem = {id: 3, name: "headphones", price: 84, brand: "Sonical", priceEUR: this.price * USD_to_EUR};
+console.log("Price of thirdItem in Euros: ", thirdItem.priceEUR);
+
+//Instead, we can give the value as a function, that will calculate the value when called
+let fourthItem = {id: 4, name: "glasses", price: "150", 
+	priceEUR: function() { return this.price * USD_to_EUR; }, //fourthItem.priceEUR() will now call a function to return the converted price
+	priceEURES6() { return this.price * USD_to_EUR; }}; //fourthItem.priceEURES6() will now call a function (using ES6 syntax) to return the converted price
+	
+console.log("Price of fourthItem in Euros: ", fourthItem.priceEUR());
+console.log("Price of fourthItem in Euros: ", fourthItem.priceEURES6());
