@@ -618,7 +618,7 @@ let myCar4 = {
 
 console.log("My car: ", myCar4);
 
-//As we can see, simply making a variable point to another object, creates essentially a shallow copy; any changes made to yourCar2 will also be applied to myCar4, as it's just pointing back to myCar4, rather than its own object
+//As we can see, simply making a variable point to another object, creates a shallow copy; any changes made to yourCar2 will also be applied to myCar4, as it's just pointing back to myCar4, rather than its own object
 var yourCar2 = myCar4;
 yourCar2.seats.color = "Grey";
 yourCar2.tyres = "Pirelli";
@@ -637,3 +637,41 @@ hisCar.seats.color = "Neon Green";
 //Thus, the changes made to the car's color are independent, but the changes made to the seat's color apply to both of the objects
 console.log("His car after changes (with Object.assign): ", hisCar);
 console.log("My car after changes (with Object.assign) to his car: ", myCar4);
+
+//Assigning an object using spread to a variable works similarly to the Object.assign method, creating an only partially deep copy
+var yourCar2 = {...myCar4};
+
+console.log("My car: ", myCar4);
+yourCar2.seats.color = "Blue";
+yourCar2.windows = "Glazed";
+
+//As we can see, the windows only apply to yourCar2, but the seats of both are blue; only the top level fields are independent
+console.log("Your car after changes: ", yourCar2);
+console.log("My car after changes to your car: ", myCar4);
+
+//Deep copes of objects are possible however
+//Redefine the myCar2 object back to its default values
+myCar4 = {
+	make: "Volvo", 
+	model: "S60", 
+	price: 42000,
+	color: "Grey",
+	seats: {
+		material: "Leather",
+		color: "Brown"
+	}
+};
+
+//Using JSON.stringify, it converts the object into a string representation, including even the nested objects
+//To then create an object from that string, we use JSON.parse to do so, creating an entirely new object from myCar2; a deep copy
+yourCar2 = JSON.parse(JSON.stringify(myCar4));
+
+console.log("My car: ", myCar4);
+console.log("Your car: ", yourCar2);
+
+yourCar2.seats.color = "Blue";
+yourCar2.windows = "Glazed";
+//As we can see, both the changes to top-level fields and fields of nested object seats are only applied to yourCar2; it's a deep copy
+//NOTE!! This method of creating deep copies of objects does *not* work with objects with attribute values of functions, as functions are not recognised by JSON, and will be lost when they're parsed back into objects
+console.log("My car after changes (using JSON): ", myCar4);
+console.log("Your car after changes (using JSON): ", yourCar2);
