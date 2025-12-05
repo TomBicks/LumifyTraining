@@ -600,3 +600,40 @@ class Vehicle {
 let myCar3 = new Vehicle("Volvo", "S60", 42000, s60Engine);
 console.log("My vehicle details (created using a class): \n");
 myCar3.details(); //Identical!
+
+//3. Classes??? WILL BE STARTED LATER!!
+
+
+//Creating New Objects from Existing Objects
+let myCar4 = {
+	make: "Volvo", 
+	model: "S60", 
+	price: 42000,
+	color: "Grey",
+	seats: {
+		material: "Leather",
+		color: "Brown"
+	}
+};
+
+console.log("My car: ", myCar4);
+
+//As we can see, simply making a variable point to another object, creates essentially a shallow copy; any changes made to yourCar2 will also be applied to myCar4, as it's just pointing back to myCar4, rather than its own object
+var yourCar2 = myCar4;
+yourCar2.seats.color = "Grey";
+yourCar2.tyres = "Pirelli";
+
+console.log("Your car after changes: ", yourCar2);
+console.log("My car after changes to your car: ", myCar4);
+
+//To make what is a partial deep copy of yourCar2, we need to use Object.assign
+//This method copies over the fields from a source object over to a target, almost like merging two objects together
+//Thus, the source is myCar4, and the target is an empty object, which will thus just be a copy of myCar4
+var hisCar = Object.assign({}, myCar4);
+hisCar.color = "Red";
+hisCar.seats.color = "Neon Green";
+
+//With Object.assign however, the copy isn't entirely a deep copy; whilst the top-level fields are independent, nested objects, such as seats within hisCar and myCar, are pointing to the *same* object
+//Thus, the changes made to the car's color are independent, but the changes made to the seat's color apply to both of the objects
+console.log("His car after changes (with Object.assign): ", hisCar);
+console.log("My car after changes (with Object.assign) to his car: ", myCar4);
