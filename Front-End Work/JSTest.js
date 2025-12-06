@@ -1,6 +1,7 @@
 //Enabling Strict Mode is better for determining errors and writing more secure code
 "use strict";
 
+//JavaScript/HTML functionality
 console.log("JavaScript File has Loaded");
 
 function navButton(name) {
@@ -55,7 +56,12 @@ else {
 	console.log("You pressed Cancel.");
 }
 
+window.onload = function showNextCourse() {
+	document.getElementById("futureCourses").innerHTML = "JavaScript";
+}
 
+
+//JavaScript functionality
 var x = 3.123456789;
 console.log("Value of x to 3 characters, or 2 decimal places in this case, is: " + x.toPrecision(3));
 
