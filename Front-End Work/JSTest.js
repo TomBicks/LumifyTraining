@@ -675,3 +675,51 @@ yourCar2.windows = "Glazed";
 //NOTE!! This method of creating deep copies of objects does *not* work with objects with attribute values of functions, as functions are not recognised by JSON, and will be lost when they're parsed back into objects
 console.log("My car after changes (using JSON): ", myCar4);
 console.log("Your car after changes (using JSON): ", yourCar2);
+
+
+//Object Methods
+const myCar5 = {
+	make: "Volvo", 
+	model: "S60", 
+	price: 42000,
+	color: "Grey",
+	seats: {
+		material: "Leather",
+		color: "Brown"
+	}
+};
+
+var samsCar = Object.create(myCar5); //In effect, creates object samsCar, using myCar5 as a prototype
+//However, this means changes to this object *will* affect the original myCar5 object, making it not a deep copy
+
+samsCar.seats.color = "White";
+console.log("The effect of Object.create():");
+console.log("My car: ", myCar5);
+console.log("Sam's car: ", samsCar);
+
+//Returns the string name of each of the attributes
+console.log("What are the Object's keys?:");
+console.log(Object.keys(myCar5));
+
+//Returns the values of each of the attributes
+console.log("What are the Object's values?:");
+console.log(Object.values(myCar5));
+
+//Returns an array of arrays of each key-value pair
+console.log("What are the Object's pairs?:");
+console.log(Object.entries(myCar5));
+
+/*let s60Engine = {
+	cylinders: 4,
+	displacement: 2000,
+	horsepower: 250
+}*/
+
+//This will merge the two objects together, returning myCar5 with the engine field added to it
+let yourCar3 = Object.assign(myCar5, {engine: s60Engine});
+
+//They are exactly the same, with the engine having been added to both
+//This means Object.assign doesn't change the fact this is only a paartial deep copy
+console.log("The effect of Object.assign():");
+console.log("Your car: ", yourCar3);
+console.log("My car: ", myCar5);
