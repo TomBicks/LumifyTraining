@@ -748,3 +748,35 @@ console.log("My car: ", myCar5);
 
 //Object.seal is very similiar to Object.freeze, especially with Strict Mod turned on.
 //In fact, freeze actually does a little bit more than seal; "It prevents modifying any existing properties"
+
+
+//JavaScript Array Methods
+let foodItems = [
+	{ name: "meat", price: 25 },
+	{ name: "vegetables", price: 17 },
+	{ name: "cake", price: 20 },
+	{ name: "drinks", price: 38 }
+];
+
+//The Map Method
+//Usual way one might iterate through an array to get the prices
+let itemPrices = [];
+for (let item of foodItems) {
+	itemPrices.push(item.price);
+}
+console.log("Price list using for loop: ", itemPrices);
+
+//A more concise way however is using the map method
+let itemPriceList = foodItems.map(function(item) {
+	return item.price;
+});
+console.log("Price list using map method: ", itemPriceList);
+
+//An even more concise method, using ES6 syntax and map method
+//Works off of the implied return syntax
+itemPriceList = foodItems.map(item => item.price);
+console.log("Price list using map method (with ES6 syntax): ", itemPriceList);
+
+//The Reduce Method
+
+//The Filter Method
