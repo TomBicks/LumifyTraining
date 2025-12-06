@@ -778,5 +778,34 @@ itemPriceList = foodItems.map(item => item.price);
 console.log("Price list using map method (with ES6 syntax): ", itemPriceList);
 
 //The Reduce Method
+//If, for example, we want the total price of all items, the usual way would be this
+let total = 0;
+for(let item of foodItems) {
+	total += item.price;
+}
+console.log("Total cost of items using for loop: ", total);
+
+//A more concise method however is using the reduce method
+//sum will be the accumulator, its value maintained between each iteration over the items, each adding their value to sum
+//0 at the end is the initial value of the accumulator; as we want the total price, 0 is appropriate
+let totalReducer = foodItems.reduce((sum, item) => sum + item.price, 0);
+console.log("Total cost of items using reduce method: ", totalReducer);
 
 //The Filter Method
+//If, for example, we wish to find only the expensive items (above $25 in price), we might run a for loop to only add items to a new array that have a price over 25
+//However, there is a more concise method using the filter method
+let expensiveItems = foodItems.filter(item => item.price >= 25);
+console.log("The expensive items are, using the filter method: ", expensiveItems);
+
+//So, if we wanted to total the price of the expensive items, we woudl again use the reduce method
+let expensiveItemsTotal = expensiveItems.reduce((sum, item) => sum + item.price, 0);
+console.log("Total cost of expensive items using reduce method: ", expensiveItemsTotal);
+
+//The Set Method
+//Let us create an array with multiple duplicate values
+const values = [3, 1, 3, 5, 2, 4, 4, 4];
+
+//Using the Set method, we return a collection of values from the array, but only one of each unique instance, thius removing the duplicates
+const setOfValues = new Set(values);
+//Using spread, we can then add this to an entirely new array, thus having creating an array with duplicates removed
+const uniqueValues = [...setOfValues];
