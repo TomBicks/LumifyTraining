@@ -60,6 +60,9 @@ window.onload = function showNextCourse() {
 	document.getElementById("futureCourses").innerHTML = "JavaScript";
 }
 
+function sendAlert(message) {
+	alert("Message from sendAlrt: " + message);
+}
 
 //JavaScript functionality
 var x = 3.123456789;
