@@ -41,7 +41,13 @@
 		</div>
 		
 		</br>
-		<div id="futureCourses"></div>
-		<button onclick="sendAlert(this)">sendAlert</button>
+		<form>
+			<div id="futureCourses"></div>
+			<button onclick="sendAlert(this)">sendAlert</button>
+			<input type="text" required minlength="4" maxlength="6"> <!-- min of 4 max of 6 characters --> 
+			<input type="text" pattern="[A-Za-z]{3}"> <!-- Accept only 3 instances of the filter; here, only 3 uppercase or lowercase letters --> 
+			<input type="text" pattern="[A-Za-z]{1,}"> <!-- Makes sure the first character is a letter; after that it doesn't care (hence the empty max range ", ") --> 
+			<input type="text" pattern="[A-Za-z]{1,}[+]{0,2}"> <!-- Makes sure the first character is a letter, then ensures either 0 to 2 '+' follow it; 3 would fail --> 
+		</form>
 	</body>
 </html>
