@@ -723,3 +723,28 @@ let yourCar3 = Object.assign(myCar5, {engine: s60Engine});
 console.log("The effect of Object.assign():");
 console.log("Your car: ", yourCar3);
 console.log("My car: ", myCar5);
+
+
+//Freezing Objects
+//We cannot modify or add top-level fields of a frozen object
+//However, we can modify or add top-level fields of a nested object, in this case, herCar.seats
+let herCar = Object.freeze(myCar5);
+
+//Modify a top-level field
+try { herCar.color = "Yellow"; } //Error!
+catch(err) { console.log("Error message is: ", err.message); }
+
+//Modify a nested object's field
+try { herCar.seats.color = "Red"; } //No error!
+catch(err) { console.log("Error message is: ", err.message); }
+
+//Add a field to a nested object
+try { herCar.seats.bucket = true; } //No error!
+catch(err) { console.log("Error message is: ", err.message); }
+
+//We see all the changes to the nested object have applied to both herCar and the prototype myCar; partial deep-copy, but prevents changes to the fields which would be independent; the top-level fields
+console.log("Her car: ", herCar);
+console.log("My car: ", myCar5);
+
+//Object.seal is very similiar to Object.freeze, especially with Strict Mod turned on.
+//In fact, freeze actually does a little bit more than seal; "It prevents modifying any existing properties"
