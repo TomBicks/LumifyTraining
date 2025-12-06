@@ -809,3 +809,56 @@ const values = [3, 1, 3, 5, 2, 4, 4, 4];
 const setOfValues = new Set(values);
 //Using spread, we can then add this to an entirely new array, thus having creating an array with duplicates removed
 const uniqueValues = [...setOfValues];
+
+
+//The instanceOf Keyword
+class Vehicle2 {
+	constructor(make, model, price, engine) {
+		this.make = make;
+		this.model = model;
+		this.price = price;
+	}
+}
+
+let myCar6 = new Vehicle2("Vilkswagen", "GTI", 29000);
+
+let yourCar4 = JSON.parse(JSON.stringify(myCar6));
+let herCar2 = {...myCar6};
+let hisCar2 = Object.create(myCar6);
+
+console.log("Is myCar6 an instance of Vehicle2?: ", myCar6 instanceof Vehicle2); //A Vehicle2
+console.log("myCar6: ", myCar6);
+//Despite being a deep copy, by stringifying the object, it has not retained the information about the Vehicle2 Class
+console.log("Is yourCar4 (deep copy) an instance of Vehicle2?: ", yourCar4 instanceof Vehicle2); //Not A Vehicle2
+console.log("yourCar4: ", yourCar4);
+//Using spread syntax does not contain the information about the original class from which myCar6 was created
+console.log("Is herCar2 (spread syntax) an instance of Vehicle2?: ", herCar2 instanceof Vehicle2); //Not A Vehicle2
+console.log("herCar2: ", herCar2);
+//Using Object.create, meaning myCar6 is a prototype of hisCar2, means hisCar2 inherits the Vehcile2 class through prototyping
+console.log("Is hisCar2 an instance of Vehicle2?: ", hisCar2 instanceof Vehicle2); //A Vehicle2
+console.log("hisCar2: ", hisCar2);
+
+//How to specifically define inheritance - this means it will inherit all the fields and functions defined in Vehicle2, with the option to add new elements, or even overriding the elements of Vehicle2
+class Motorcycle extends Vehicle2 {
+	constructor(make, model, price, seatHeight) {
+		super(make, model, price); //By invoking the super method (a reference to the super class) from this child class, we invoke the constructor of Vehcile2, which already handles make, model and price
+		this.seatHeight = seatHeight; //seatHeight is not a part of Vehicle2, so we need to define that here
+	}
+}
+
+let myBike = new Motorcycle("Ducati", "Monster", 10000);
+
+console.log("Is myBike a Motorcycle?: ", myBike instanceof Motorcycle); //Yes!
+console.log("Is myBike a Vehicle2?: ", myBike instanceof Vehicle2); //Yes!
+
+//What if we use the function constructor rather than a class
+//The class keyword is just this under the hood, so the results are identical
+function City(name, area, population) {
+	this.name = name;
+	this.area = area;
+	this.population = population;
+}
+
+let myCity = new City("Bangalore", 8000, 9000000);
+
+console.log("is myCity a City?: ", myCity instanceof City); //Yes!
