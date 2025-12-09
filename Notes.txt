@@ -1,4 +1,6 @@
 Studying
 - Really struggled with CSS Fundamentals - CSS Display and Positioning
 	- This means I need to have it down more wtf stuff like display: inline-block means vs display: block and what the different position like fixed, relative, static and absolute all actually mean; go back and study it later!
-	- Basically skipped CSS Typography Lab: Traveling Novelist on account of it being annoying to use Google Fonts; still a helpful resource on using and addings fonts though
+- Basically skipped CSS Typography Lab: Traveling Novelist on account of it being annoying to use Google Fonts; still a helpful resource on using and addings fonts though
+- Go back to React - Creating a Simple Static HTML Page; moved on from there to see if they install at all
+	- Also, the videos use React 16.12, which they call the "latest, as of this video"; that means the video is 6 years old, as that came out end of 2019
