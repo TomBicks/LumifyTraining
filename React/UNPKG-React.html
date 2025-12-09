@@ -8,7 +8,16 @@
 <body>
 	<div id="my-react-app"></div>
 	<script type="text/babel">
-		ReactDOM.render(<h1>Welcome to the world of React!</h1>, document.getElementById("my-react-app"));
+		ReactDOM.render(
+			<div>
+				<h1 key="header" className="myFruit">Welcome to the world of React!</h1>
+				<ul>
+					<li key="O-key">Orange</li>
+					<li key="A-key">Apple</li>
+					<li key="B-key">Banana</li>
+				</ul>
+			</div>
+			, document.getElementById("my-react-app"));
 	</script>
 </body>
 </html>
