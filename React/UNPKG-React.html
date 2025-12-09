@@ -20,6 +20,8 @@
 			const fruit_list = (
 				<div>
 					<h1 key="header" className="myFruit">Welcome to the world of React!</h1>
+					<TestReactComponent></TestReactComponent>
+					
 					<h2 key="clock">Current time: {new Date().toLocaleTimeString()}</h2>
 					<ul>
 						<li key="O-key">{orange_str}</li>
@@ -32,6 +34,16 @@
 			ReactDOM.render(fruit_list, document.getElementById("my-react-app"));
 		}
 		setInterval(on_tick, 2000);
+		
+		class TestReactComponent extends React.Component {
+			render() {
+				return(
+					<div>
+						<h2 className = "ReactComponent">Hello world from a component!</h2>
+					</div>
+				);
+			}
+		}
 	</script>
 </body>
 </html>
