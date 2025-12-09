@@ -11,17 +11,26 @@
 		const orange_str = "Orange";
 		const apple_str = "Apple";
 		const banana_str = "Banana";
-		const fruit_list = (
-			<div>
-				<h1 key="header" className="myFruit">Welcome to the world of React!</h1>
-				<ul>
-					<li key="O-key">{orange_str}</li>
-					<li key="A-key">{apple_str}</li>
-					<li key="B-key">{banana_str}</li>
-				</ul>
-			</div>
-		);
-		ReactDOM.render(fruit_list, document.getElementById("my-react-app"));
+		
+		function on_tick() {
+			var items = ["Jackfruit", "Mango", "Strawberry", "Grapes", "Peach"];
+			var randomItem = items[Math.floor(Math.random() * items.length)];
+			console.log(`Random fruit is ${randomItem}`)
+		
+			const fruit_list = (
+				<div>
+					<h1 key="header" className="myFruit">Welcome to the world of React!</h1>
+					<ul>
+						<li key="O-key">{orange_str}</li>
+						<li key="A-key">{apple_str}</li>
+						<li key="B-key">{banana_str}</li>
+						<li key="R-key">{randomItem}</li>
+					</ul>
+				</div>
+			);
+			ReactDOM.render(fruit_list, document.getElementById("my-react-app"));
+		}
+		setInterval(on_tick, 2000);
 	</script>
 </body>
 </html>
