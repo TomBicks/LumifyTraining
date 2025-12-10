@@ -1,7 +1,9 @@
 Studying
 - Really struggled with CSS Fundamentals - CSS Display and Positioning
-	- This means I need to have it down more wtf stuff like display: inline-block means vs display: block and what the different position like fixed, relative, static and absolute all actually mean; go back and study it later!
+	- TODO!! This means I need to have it down more wtf stuff like display: inline-block means vs display: block and what the different position like fixed, relative, static and absolute all actually mean; go back and study it later!
 - Basically skipped CSS Typography Lab: Traveling Novelist on account of it being annoying to use Google Fonts; still a helpful resource on using and addings fonts though
 - Go back to React - Creating a Simple Static HTML Page; moved on from there to see if they install at all
 	- Also, the videos use React 16.12, which they call the "latest, as of this video"; that means the video is 6 years old, as that came out end of 2019
-- The early React videos don't seem to illustrate React in a professional setting yet, using unpkg (doesn't require installation of React yet). *WILL WAIT UNTIL AFTER I FINISH WATCHING THE JSX STUFF FIRST*
+- The early React videos don't seem to illustrate React in a professional setting yet, using unpkg (doesn't require installation of React yet).
+	- The later ones do however; these earlier ones are good for learning stuff, so stick it out!
+	- TODO!! Go over the final part of Local Machine and Online Playgrounds again, "Composing Components" as it involves actual react stuff, in proffessional setting (just before I have it installed)
