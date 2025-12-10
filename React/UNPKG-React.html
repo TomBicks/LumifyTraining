@@ -6,44 +6,10 @@
 	<script src="https://unpkg.com/babel-standalone@6.26.0/babel.js"></script>
 </head>
 <body>
-	<div id="my-react-app"></div>
-	<script type="text/babel">
-		const orange_str = "Orange";
-		const apple_str = "Apple";
-		const banana_str = "Banana";
-		
-		function on_tick() {
-			var items = ["Jackfruit", "Mango", "Strawberry", "Grapes", "Peach"];
-			var randomItem = items[Math.floor(Math.random() * items.length)];
-			console.log(`Random fruit is ${randomItem}`)
-		
-			const fruit_list = (
-				<div>
-					<h1 key="header" className="myFruit">Welcome to the world of React!</h1>
-					<TestReactComponent></TestReactComponent>
-					
-					<h2 key="clock">Current time: {new Date().toLocaleTimeString()}</h2>
-					<ul>
-						<li key="O-key">{orange_str}</li>
-						<li key="A-key">{apple_str}</li>
-						<li key="B-key">{banana_str}</li>
-						<li key="R-key">{randomItem}</li>
-					</ul>
-				</div>
-			);
-			ReactDOM.render(fruit_list, document.getElementById("my-react-app"));
-		}
-		setInterval(on_tick, 2000);
-		
-		class TestReactComponent extends React.Component {
-			render() {
-				return(
-					<div>
-						<h2 className = "ReactComponent">Hello world from a component!</h2>
-					</div>
-				);
-			}
-		}
-	</script>
+	<div id="my-react-app">
+		<div id="fruit-list"></div>
+		<div id="react-component"></div>
+	</div>
+	<script type="text/babel" src="ReactComponent.js"></script>
 </body>
 </html>
