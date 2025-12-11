@@ -18,7 +18,12 @@ class EvenNumber extends React.Component {
 	//This is also only called during the update phase, NOT when the component is first rendered
 	shouldComponentUpdate(nextProps, nextState) {
 		console.log("2. ShouldComponentUpdate", nextProps, nextState);
-		return true; //Temporary for now
+		if(nextProps.number % 2 == 0) {
+			console.log('shouldComponentUpdate returns true - Even Number');
+			return true;
+		}
+		console.log('shouldComponentUpdate returns false - Odd Number');
+		return false;
 	}
 	
 	//Render method is also part of the update phase
