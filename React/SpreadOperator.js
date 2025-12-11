@@ -3,8 +3,8 @@ class Company extends React.Component {
 		return(
 			<div className = 'company'>
 				<div>Company: {this.props.companyName}</div>
-				<Employee employeeName={this.props.employeeName} designation={this.props.designation} />
-				<Activities committees={this.props.committees} forums={this.props.forums} />
+				<Employee {...this.props} tenure="2 years" />
+				<Activities {...this.props}/>
 			</div>
 		);
 	}
@@ -16,6 +16,7 @@ class Employee extends React.Component {
 			<div className = 'employee'>
 				<div>Name: {this.props.employeeName}</div>
 				<div>Designation: {this.props.designation}</div>
+				<div>Tenure: {this.props.tenure}</div>
 			</div>
 		);
 	}
@@ -36,4 +37,4 @@ ReactDOM.render(<Company companyName = "Skillsoft"
 						employeeName = "John"
 						designation = "Analvst"
 						committees = "Performance review, Data insights"
-						forums = "StackOverflow, DataHelper"/>, document.getElementById("transfer-props"));
+						forums = "StackOverflow, DataHelper"/>, document.getElementById("spread-props"));
