@@ -9,6 +9,25 @@ class Employees extends React.Component {
 			names: props.initialNames,
 			mounted: false
 		};
+		
+		//Triggers when component has been mounted
+		window.addEventListener('mountedEvent', function() {
+			console.log('Invoked when component has mounted');
+			this.setState((prevState) => {
+				var names = prevState.names.concat();
+				
+				names.push('Imogene');
+				names.push('Yvette');
+				names.push('Chavonda');
+				names.push('Gregory');
+				names.push('Marvin');
+				
+				return { names: names };
+			});
+			
+			//Using multiple of these doesn't really affect performance, due to React's performance saving measures, such as collating state updates to occur asynchronously
+			this.setState({ mounted: true })
+		}.bind(this)); //Binds the function to "this", so that we can sue "this.setState"
 	}
 	
 	render() {
@@ -42,4 +61,4 @@ class Employees extends React.Component {
 
 
 
-ReactDOM.render(, document.getElementById("lifecycle-mount-phase"))
+ReactDOM.render(<Employees initialNames={['Dean', 'Raj']}/>, document.getElementById("lifecycle-mount-phase"))
