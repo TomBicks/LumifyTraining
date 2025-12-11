@@ -16,7 +16,7 @@ class FruitList extends React.Component {
 		
 		var items = ["Jackfruit", "Mango", "Strawberry", "Grapes", "Peach"];
 		var randomItem = items[Math.floor(Math.random() * items.length)];
-		console.log(`Random fruit is ${randomItem}`)
+		//console.log(`Random fruit is ${randomItem}`)
 		
 		const fruit_list = (
 			<div>
