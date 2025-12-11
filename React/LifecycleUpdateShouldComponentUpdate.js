@@ -29,7 +29,10 @@ class EvenNumber extends React.Component {
 	//Render method is also part of the update phase
 	render() {
 		console.log("3. render");
-		
+		if(this.props.number > 15) {
+			//NOTE!! This is part 1 of catching errors
+			throw Error('This number is greater than 15!');
+		}
 		return(
 			<div className="evennumber">{this.props.number}</div>
 		);
@@ -62,6 +65,17 @@ class StreamingNumbers extends React.Component {
 				index: prevState.index + 1
 			}
 		});
+	}
+	
+	//This is part 2 of catching errors
+	//error - contains the details of the actual error that was thrown
+	//info - contains the actual stacktrace of the error thrown (useful for debugging)
+	//If an error occurs, it will be propagated up the component tree to the closest error boundary; this method
+	//This means just one component can be the error boundary, by being a higher-level component, catching all errors that propgate up the component tree
+	componentDidCatch(error, info) {
+		this.setState({
+			index: 0
+		})
 	}
 	
 	render() {
