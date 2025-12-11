@@ -9,7 +9,7 @@ class DetailsBox extends React.Component {
 	
 	//The arrow notation is preferred for functions that belong to ES6 classes
 	//This automatically binds the functions to "this"; the current instance of the component
-	pickRandomNames = () => {
+	pickRandomName = () => {
 		var names = ['Alice','Bob','Carl','Dora','Elisa'];
 		
 		var nameIndex = Math.floor(Math.random() * names.length);
@@ -39,10 +39,30 @@ class DetailsBox extends React.Component {
 	pickRandomSubject = () => {
 		var subject = ['Technology', 'Health', 'Science', 'Maths']
 		
-		var subjectIndex = Math.floor(Math.random() * colours.length);
+		var subjectIndex = Math.floor(Math.random() * subject.length);
 		
 		this.setState({subject: subject[subjectIndex]});
 	}
+	
+	render() {
+		const style = {
+			color: this.state.color,
+			backgroundColor: this.state.backgroundColor
+		}
+		
+		return(
+			<div>
+				<div className="details" style={style}>
+					Name: {this.state.name}<br/>
+					Subject: {this.state.subject}
+				</div>
+				<button className="button" onClick={this.pickRandomName}>Change Student Name</button>
+				<button className="button" onClick={this.pickRandomColour}>Change Text Colour</button>
+				<button className="button" onClick={this.pickRandomBackgroundColour}>Change Background Colour</button>
+				<button className="button" onClick={this.pickRandomSubject}>Change Subject</button>
+			</div>
+		);
+	}
 }
 
-ReactDOM. render(, document.getElementById("react-update-state"))
+ReactDOM. render(<DetailsBox/>, document.getElementById("react-update-state"))
