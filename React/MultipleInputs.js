@@ -17,7 +17,7 @@ class HotelBookingForm extends React.Component {
 		var value = event.target.value;
 		console.log("Event name: " + name + ", Event value: " + value);
 		
-		if(name == 'NameValue') {
+		if(name == 'nameValue') {
 			value = value.toUpperCase();
 		}
 		
