@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import viteLogo from '/vite.svg'
+import viteLogo from '/vite.svg';
 
 class Comment extends React.Component {
     render() {
@@ -8,7 +8,7 @@ class Comment extends React.Component {
                 <tbody>
                     <tr>
                         <td className='photo'><img src={viteLogo}></img></td>
-                        <td className='message'>Here is where messages go.</td>
+                        <td className='message'>{this.props.message}</td>
                         <td className='delete'><img src={viteLogo}></img></td>
                     </tr>
                 </tbody>

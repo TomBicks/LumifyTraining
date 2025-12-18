@@ -5,7 +5,11 @@ class CommentList extends React.Component {
     render() {
         return(
             <div className='commentList'>
-                <Comment key={1}/>
+                {
+                    this.props.messages.map(
+                        (message) => <Comment key={message} message={message}/>
+                    )
+                }
             </div>
         );
     }
