@@ -12,11 +12,21 @@ class App extends React.Component {
     ]
   }
 
-  //Will concat the new post to the messages array, updating the messages state and creating a new Comment element automatically due to this.state.messages passed to CommentList
+  //Uses concat to create a copy of the messages array, then pushes the new message to that array, then returns it, updating the messages state and creating a new Comment element automatically due to this
   addComment = (message) => {
     this.setState(function(prevState) {
       var messages = prevState.messages.concat();
       messages.push(message);
+      return {
+        messages: messages
+      }
+    });
+  }
+  //Create a copy of the messages array, using concat, then remove the message at the desired index
+  deleteComment = (index) => {
+    this.setState(function(prevState) {
+      var messages = prevState.messages.concat();
+      messages.splice(index, 1);
       return {
         messages: messages
       }
@@ -27,7 +37,7 @@ class App extends React.Component {
     return(
       <div>
         <CommentBox addComment={this.addComment}/>
-        <CommentList messages={this.state.messages}/>
+        <CommentList messages={this.state.messages} deleteComment={this.deleteComment}/>
       </div>
     );
   }
