@@ -7,3 +7,11 @@ Studying
 - The early React videos don't seem to illustrate React in a professional setting yet, using unpkg (doesn't require installation of React yet).
 	- The later ones do however; these earlier ones are good for learning stuff, so stick it out!
 	- TODO!! Go over the final part of Local Machine and Online Playgrounds again, "Composing Components" as it involves actual react stuff, in proffessional setting (just before I have it installed)
+	
+Prototyping
+- Create some prototype stuff based on Mana Sourdough
+	- Create some components to represent a list of breads withg descriptions and price; pass them in as props to a Bread component from a bread list
+		- Figure out if an object with a name for bread and then an array of all the other bread details is a good idea or not to pass through
+	- Make it so that shows a deeper breakdown of the bread when clicked on
+		- Make it only render when there is a bread selected
+		- Does the transform animation (Like how the div opened slowly in the CSS tests) work repeatedly on elements that have just been re-rendered, or weren't rendered before but are now???
