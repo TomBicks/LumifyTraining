@@ -3,7 +3,7 @@ import breadEmpty from './assets/bread-empty.jpg';
 
 class Bread extends React.Component {
     selectBread = () => {
-        this.props.selectBread(this.props.name);
+        this.props.selectBread(this.props.id);
     }
 
     render() {

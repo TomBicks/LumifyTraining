@@ -19,8 +19,8 @@ class SelectedBread extends React.Component {
     }
 }
 
-/*Bread.defaultProps = {
+SelectedBread.defaultProps = {
     imgSrc : breadEmpty //NOTE!! Doesn't work if surrounded in curly braces
-}*/
+}
 
 export default SelectedBread;

@@ -2,20 +2,25 @@ import React from 'react';
 import CommentList from './CommentList';
 import CommentBox from './CommentBox';
 import Bread from './Bread';
+import BreadList from './BreadList';
 import SelectedBread from './SelectedBread';
 
 //This is what I imagine the bread list to look like, for now; useful names to refer to
 //We're not updating this like the comment list, so no need to make it part of state for now; can be held by something else later
 const breadInfo = {
   "sourdough": {
+    id: "sourdough",
     name: "Sourdough",
-    desc: "A tough bread!"
+    desc: "A tough bread!",
+    imgSrc: "test"
   },
   "whitebread": {
+    id: "whitebread",
     name: "White Bread",
     desc: "Your basic white bread!"
   },
   "wholegrain": {
+    id: "wholegrain",
     name: "Whole-grain",
     desc: "A bread full of grain!"
   }
@@ -61,23 +66,16 @@ class App extends React.Component {
   }
 
   render() {
-    //Overwrites it; no go
-    /*let spreadTest = {
-      breadInfo : {
-        ...breadInfo, ["sourdough"] : {
-          //name : "test"
-        }
-      }
-    }*/
-
     return(
       <div>
         <CommentBox addComment={this.addComment}/>
         <CommentList messages={this.state.messages} deleteComment={this.deleteComment}/>
-        <SelectedBread {...breadInfo[this.state.selectedBread]}/> //This will
-        <Bread name="sourdough" desc="A tough bread!" selectBread={this.selectBread}/>
-        <Bread name="whitebread" desc="Your basic white bread!" selectBread={this.selectBread}/>
-        <Bread name="wholegrain" desc="A bread full of grain!" selectBread={this.selectBread}/>
+        <SelectedBread {...breadInfo[this.state.selectedBread]}/>
+        NEXT UP; USE BREADLIST, PASS IN THE WHOLE BREADINFO OBJECT, THEN MAP OUT EACH BREAD OBJECT TO A BREAD COMPONENT
+        <BreadList listOfBread={Object.values(breadInfo)}/>
+        <Bread {...breadInfo["sourdough"]} selectBread={this.selectBread}/>
+        <Bread {...breadInfo["whitebread"]} selectBread={this.selectBread}/>
+        <Bread {...breadInfo["wholegrain"]} selectBread={this.selectBread}/>
       </div>
     );
   }
