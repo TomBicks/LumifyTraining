@@ -74,8 +74,10 @@ class App extends React.Component {
       <div>
         <CommentBox addComment={this.addComment}/>
         <CommentList messages={this.state.messages} deleteComment={this.deleteComment}/>
-        <SelectedBread {...breadInfo.sourdough}/>
-        <Bread name="sourdough" desc="Test" selectBread={this.selectBread}/>
+        <SelectedBread {...breadInfo[this.state.selectedBread]}/> //This will
+        <Bread name="sourdough" desc="A tough bread!" selectBread={this.selectBread}/>
+        <Bread name="whitebread" desc="Your basic white bread!" selectBread={this.selectBread}/>
+        <Bread name="wholegrain" desc="A bread full of grain!" selectBread={this.selectBread}/>
       </div>
     );
   }
