@@ -62,19 +62,19 @@ class App extends React.Component {
 
   render() {
     //Overwrites it; no go
-    let spreadTest = {
+    /*let spreadTest = {
       breadInfo : {
         ...breadInfo, ["sourdough"] : {
           //name : "test"
         }
       }
-    }
+    }*/
 
     return(
       <div>
         <CommentBox addComment={this.addComment}/>
         <CommentList messages={this.state.messages} deleteComment={this.deleteComment}/>
-        <SelectedBread test={breadInfo.sourdough} test2={spreadTest}/>
+        <SelectedBread {...breadInfo.sourdough}/>
         <Bread name="sourdough" desc="Test" selectBread={this.selectBread}/>
       </div>
     );
