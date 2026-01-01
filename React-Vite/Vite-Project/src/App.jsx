@@ -1,6 +1,7 @@
 import React from 'react';
 import CommentList from './CommentList';
 import CommentBox from './CommentBox';
+import Bread from './Bread';
 
 class App extends React.Component {
   state = {
@@ -38,6 +39,7 @@ class App extends React.Component {
       <div>
         <CommentBox addComment={this.addComment}/>
         <CommentList messages={this.state.messages} deleteComment={this.deleteComment}/>
+        <Bread desc="This should be an empty, default bread!"/>
       </div>
     );
   }
