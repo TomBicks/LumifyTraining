@@ -71,11 +71,7 @@ class App extends React.Component {
         <CommentBox addComment={this.addComment}/>
         <CommentList messages={this.state.messages} deleteComment={this.deleteComment}/>
         <SelectedBread {...breadInfo[this.state.selectedBread]}/>
-        NEXT UP; USE BREADLIST, PASS IN THE WHOLE BREADINFO OBJECT, THEN MAP OUT EACH BREAD OBJECT TO A BREAD COMPONENT
-        <BreadList listOfBread={Object.values(breadInfo)}/>
-        <Bread {...breadInfo["sourdough"]} selectBread={this.selectBread}/>
-        <Bread {...breadInfo["whitebread"]} selectBread={this.selectBread}/>
-        <Bread {...breadInfo["wholegrain"]} selectBread={this.selectBread}/>
+        <BreadList listOfBread={Object.values(breadInfo)} selectBread={this.selectBread}/>
       </div>
     );
   }

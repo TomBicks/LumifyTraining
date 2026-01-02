@@ -11,7 +11,7 @@ class Bread extends React.Component {
             //Does this need to be table and table rows istead?
             <div className="breadContainer" onClick={this.selectBread}>
                 <img className="breadImg" src={this.props.imgSrc}/>
-                <p className="breadDesc">{this.props.desc}</p>
+                <p className="breadDesc">{this.props.name}</p>
             </div>
         );
     }
