@@ -1,7 +1,6 @@
 import React from 'react';
 import CommentList from './CommentList';
 import CommentBox from './CommentBox';
-import Bread from './Bread';
 import BreadList from './BreadList';
 import SelectedBread from './SelectedBread';
 
