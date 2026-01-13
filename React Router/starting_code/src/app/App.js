@@ -14,6 +14,7 @@ import { Route, RouterProvider, createBrowserRouter, createRoutesFromElements } 
 
 import "./App.css";
 
+//Start using 'npm start'
 const router = createBrowserRouter(createRoutesFromElements(
   /* Wrap this Root Route to create Router here */
   <Route path="/" element={ <Root/> }>
