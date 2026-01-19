@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { v4 as uuidv4 } from "uuid";
+import { v4 as uuidv4 } from "uuid"; //This app uses uuidv4() function from the uuid package to create unique identifiers for topics/quizzes/cards
 import ROUTES from "../app/routes";
 // import selectors
 
