@@ -9,13 +9,20 @@ export const ContactsPage = (props) => {
   contact info and duplicate check
   */
   const [name, setName] = useState('');
-  const [duplicateName, setDuplicateName] = useState(false);
   const [phone, setPhone] = useState('');
   const [email, setEmail] = useState('');
 
-  const handleSubmit = (e) => {
+  const[contact, setContact] = useState({
+    name: 'Tomas',
+    phone: '0417',
+    email: 'tommy@bick',
+  })
+  const [duplicateName, setDuplicateName] = useState(false);
+
+  const submitContact = (e) => {
     e.preventDefault();
     //Add contact info and clear data if the contact name is not a duplicate
+    alert("submitted!");
   };
 
   /*
@@ -35,33 +42,51 @@ export const ContactsPage = (props) => {
   };
 
   const handleInputChange = (input) => {
-		const name = input.target.name;
+		//ATTEMPT 1 - SetState
+    const inputName = input.target.name;
 		var value = input.target.value;
-		console.log("input name: " + name + ", input value: " + value);
+		console.log("input name: " + inputName + ", input value: " + value);
+		alert("input name: " + inputName + ", input value: " + value);
 		
-		//Set state value based on the name returned from an input
-		setState({[name]: value});
+    /*switch(inputName) {
+      case("name"):
+        alert("This was a name!")
+      default:
+        alert("No matches!");
+    }*/
+
+    //Set state value based on the name returned from an input
+		//setState({[inputName]: value});
+    //setName(input.target.value);*/
+
+    //ATTEMPT 2 - Contact Object
+    //var name = input.target.name;
+    //alert(name);
+    setContact({
+      name: name
+    });
+    setName(name);
 	};
 
   return (
     <div>
       <section>
         <h2>Add Contact</h2> 
-        <ContactForm>
+        <ContactForm 
           name={name} 
-          setName={setName} 
           phone={phone}
-          setPhone={setPhone}
           email={email} 
-          setEmail={setEmail} 
-          handleSubmit={handleSubmit}
-        </ContactForm>
-        <label htmlFor="name">Name:</label>
-        <input type="text" id="name" name="name" value={name} onChange={handleInputChange}></input>
-        <label htmlFor="phone">Phone:</label>
-        <input type="number" id="phone" name="phone" value={phone}></input>
-        <label htmlFor="email">Email:</label>
-        <input type="text" id="email" name="email" value={email}></input>
+          onChange={handleInputChange}
+          handleSubmit={submitContact}
+        ></ContactForm>
+        <hr />
+        <hr />
+        <label htmlFor="name">Other Name:</label>
+        <input type="text" id="name" name="name" value={contact.name} onChange={handleInputChange}></input>
+        <label htmlFor="phone">Other Phone:</label>
+        <input type="number" id="phone" name="phone" value={contact.phone}onChange={handleInputChange}></input>
+        <label htmlFor="email">Other Email:</label>
+        <input type="text" id="email" name="email" value={contact.email}onChange={handleInputChange}></input>
       </section>
       <hr />
       <section>
