@@ -29,6 +29,7 @@ export const ContactsPage = (props) => {
   Using hooks, check for contact name in the 
   contacts array variable in props
   */
+  //I personally think checking every change is too much, but at least this works; personally I'd make it only after attempting to submit
   useEffect(() => {
     const array = props.contacts;
     //const nameInlist = array.includes(name);
@@ -36,36 +37,17 @@ export const ContactsPage = (props) => {
     alert(`Array is ${array}`);
   }, [name]);
 
-  const handleChange = () => {
-    //Check for duplicates whenever the name in the form changes and indicate the name is a duplicate
-
-  };
-
+  //Grab the name and value of the input event, then use that to determine which field of contact to fill in
   const handleInputChange = (input) => {
-		//ATTEMPT 1 - SetState
     const inputName = input.target.name;
 		var value = input.target.value;
 		console.log("input name: " + inputName + ", input value: " + value);
-		alert("input name: " + inputName + ", input value: " + value);
-		
-    /*switch(inputName) {
-      case("name"):
-        alert("This was a name!")
-      default:
-        alert("No matches!");
-    }*/
+		//alert("input name: " + inputName + ", input value: " + value);
 
-    //Set state value based on the name returned from an input
-		//setState({[inputName]: value});
-    //setName(input.target.value);*/
-
-    //ATTEMPT 2 - Contact Object
-    //var name = input.target.name;
-    //alert(name);
     setContact({
-      name: name
+      ...contact,
+      [inputName]: value
     });
-    setName(name);
 	};
 
   return (
@@ -73,20 +55,12 @@ export const ContactsPage = (props) => {
       <section>
         <h2>Add Contact</h2> 
         <ContactForm 
-          name={name} 
-          phone={phone}
-          email={email} 
+          name={contact.name} 
+          phone={contact.phone}
+          email={contact.email} 
           onChange={handleInputChange}
           handleSubmit={submitContact}
         ></ContactForm>
-        <hr />
-        <hr />
-        <label htmlFor="name">Other Name:</label>
-        <input type="text" id="name" name="name" value={contact.name} onChange={handleInputChange}></input>
-        <label htmlFor="phone">Other Phone:</label>
-        <input type="number" id="phone" name="phone" value={contact.phone}onChange={handleInputChange}></input>
-        <label htmlFor="email">Other Email:</label>
-        <input type="text" id="email" name="email" value={contact.email}onChange={handleInputChange}></input>
       </section>
       <hr />
       <section>
