@@ -10,13 +10,21 @@ function App() {
   Define state variables for 
   contacts and appointments 
   */
-  const [contacts, setContacts] = useState({});
-  const [appointments, setAppointments] = useState({});
+  //Store contacts and appointsments as arrays of objects
+  const [contacts, setContacts] = useState([
+    {
+      name: "Tom",
+      phone: "0412",
+      email: "tomb@bick"
+    }
+  ]);
+  const [appointments, setAppointments] = useState([]);
 
   /*
   Implement functions to add data to
   contacts and appointments
   */
+  //Function to create a contact objects from provided info
   const addContact = (name, phone, email) => {
     //Create a new contact object using the provided info
     var newContact = {
@@ -34,6 +42,8 @@ function App() {
       }
     });
  };
+
+ //Function to create an appointment objects from provided info
  const addAppointment = (name, contact, date, time) => {
     //Create a new appointment object using the provided info
     var newAppointment = {

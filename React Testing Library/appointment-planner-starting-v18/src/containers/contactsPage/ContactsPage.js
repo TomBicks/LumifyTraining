@@ -3,15 +3,14 @@ import React, { setState, useState, useEffect } from "react";
 import { ContactForm } from "../../components/contactForm/ContactForm";
 import { TileList } from "../../components/tileList/TileList";
 
-export const ContactsPage = (props) => {
+export const ContactsPage = ({
+  contacts,
+  addContact
+}) => {
   /*
   Define state variables for 
   contact info and duplicate check
   */
-  const [name, setName] = useState('');
-  const [phone, setPhone] = useState('');
-  const [email, setEmail] = useState('');
-
   const[contact, setContact] = useState({
     name: 'Tomas',
     phone: '0417',
@@ -31,11 +30,19 @@ export const ContactsPage = (props) => {
   */
   //I personally think checking every change is too much, but at least this works; personally I'd make it only after attempting to submit
   useEffect(() => {
-    const array = props.contacts;
-    //const nameInlist = array.includes(name);
-    //alert(`Duplicate is ${nameInlist}`);
-    alert(`Array is ${array}`);
-  }, [name]);
+    const array = contacts;
+    //Make sure the check is case insensitive, so that capitals don't allow for duplicate contacts
+    const duplicate = contacts.find((existingContact) => existingContact.name.toLowerCase() == contact.name.toLowerCase());
+
+    //Update state whether name already exists in contacts or not
+    setDuplicateName(duplicate === undefined ? false : true);
+
+    //NOTE!! This alert technically only runs the check after a match is found, due to it not having changed before the alert is passed over
+    if(duplicateName) {
+      alert(`Check for duplicate name is ${duplicateName}`);
+    }
+  }, [contact.name]);
+  
 
   //Grab the name and value of the input event, then use that to determine which field of contact to fill in
   const handleInputChange = (input) => {
@@ -54,6 +61,7 @@ export const ContactsPage = (props) => {
     <div>
       <section>
         <h2>Add Contact</h2> 
+        <h4>Duplicate Name = {duplicateName ? "true" : "false"}</h4> 
         <ContactForm 
           name={contact.name} 
           phone={contact.phone}
@@ -65,7 +73,7 @@ export const ContactsPage = (props) => {
       <hr />
       <section>
         <h2>Contacts</h2>
-        <TileList contacts={props.contacts}></TileList>
+        <TileList contacts={contacts}></TileList>
       </section>
     </div>
   );
