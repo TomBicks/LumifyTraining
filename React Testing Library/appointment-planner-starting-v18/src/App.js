@@ -11,6 +11,7 @@ function App() {
   contacts and appointments 
   */
   //Store contacts and appointsments as arrays of objects
+  //DEBUG!! THIS IS AN EXAMPLE CONTACT!
   const [contacts, setContacts] = useState([
     {
       name: "Tom",
@@ -26,16 +27,19 @@ function App() {
   */
   //Function to create a contact objects from provided info
   const addContact = (name, phone, email) => {
+    alert(`Creating new contact: ${name}, ${phone} and ${email}`);
     //Create a new contact object using the provided info
     var newContact = {
-      name: {name},
-      phoneNo: {phone},
-      email: {email}
+      name: name,
+      phoneNo: phone,
+      email: email
     };
 
     //Create a copy of the contacts array, then push the new contact to said array and update the state to reflect this
-    this.setContacts(function(prevState) {
-      var contacts = prevState.contacts.concat();
+    //ERROR!! prevState.contacts is undefined! This leads to .concat() failing, as undefined.concat is nonsense
+    setContacts(function(prevState) {
+      //alert(prevState.contacts);
+      //var contacts = prevState.contacts.concat();
       contacts.push(newContact);
       return {
         contacts: contacts

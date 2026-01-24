@@ -7,6 +7,7 @@ export const ContactForm = ({
   onChange,
   handleSubmit
 }) => {
+  //TODO!! "Include a pattern attribute to the phone <input> with a regex that matches the phone locale of your preference"
   return (
     <form onSubmit={handleSubmit}>
       <label htmlFor="name">Name:</label>
