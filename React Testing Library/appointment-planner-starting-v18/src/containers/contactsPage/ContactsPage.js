@@ -39,13 +39,22 @@ export const ContactsPage = ({contacts, addContact}) => {
   const submitContact = (e) => {
     e.preventDefault();
 
+    //Start as valid = true, because if any *one* thing goes wrong, it's no longer valid, as opposed to *everything* going right to be valid
+    let isValid = true;
+
     console.log("Attemtping contact submission...");
     console.log(`e.target = ${e.target}`);
     console.log(`[...e.target] = ${[...e.target]}`);
     [...e.target].forEach((element) => {
       console.log(`element = ${element}`);
       console.log(`element.validity.valid = ${element.validity.valid}`);
+      console.log(`element.dataset.error = ${element.dataset.error}`);
       console.log(`element.type = ${element.type}`);
+
+      if(!element.validity.valid) {
+        console.log(`Input of type ${element.type} and name ${element.name} is not valid`);
+        isValid = false;
+      }
 
       //Exclude the submit input button
       if(element.type === "submit") {
