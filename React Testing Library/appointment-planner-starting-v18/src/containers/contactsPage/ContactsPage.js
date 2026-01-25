@@ -26,9 +26,11 @@ export const ContactsPage = ({contacts, addContact}) => {
     //alert(`1st Contact's name is ${contacts[0].name}`)
     //Make sure the check is case insensitive, so that capitals don't allow for duplicate contacts
     const duplicate = contacts.find((existingContact) => existingContact.name.toLowerCase() == contact.name.toLowerCase());
+    alert(`duplicate is ${duplicate}`);
 
     //Update state whether name already exists in contacts or not
     setDuplicateName(duplicate === undefined ? false : true);
+    alert(`duplicateName is ${duplicateName}`);
 
     //TODO!! NEED TO SHOW THE USER IMMEDIATELY THAT THE NAME IS DUPLICATE AND TO CHANGE IT; ALERT DOESN'T WORK HOWEVER!
   }, [contact.name]);
@@ -36,6 +38,20 @@ export const ContactsPage = ({contacts, addContact}) => {
   //Handle submission and adding the contact; prevent submission if fields are missing, or if the name already exists in our contacts
   const submitContact = (e) => {
     e.preventDefault();
+
+    console.log("Attemtping contact submission...");
+    console.log(`e.target = ${e.target}`);
+    console.log(`[...e.target] = ${[...e.target]}`);
+    [...e.target].forEach((element) => {
+      console.log(`element = ${element}`);
+      console.log(`element.validity.valid = ${element.validity.valid}`);
+      console.log(`element.type = ${element.type}`);
+
+      //Exclude the submit input button
+      if(element.type === "submit") {
+        console.log(`Element ${element} is the submit button`);
+      }
+    })
 
     //TODO!! GO OVER THIS SUBMISSION TO CHECK BEST WAY TO HAVE A SUCCESSFUL OR FAILED SUBMISSION, AS WELL AS HOW BEST TO CLEAR THE FIELDS
 
@@ -45,13 +61,11 @@ export const ContactsPage = ({contacts, addContact}) => {
     //Add contact info and clear data if the contact name is not a duplicate
     if(duplicateName) {
       alert("This name already exists in our contacts! Please change it.");
+      submitFailed = true;
     }
 
     if(!submitFailed) {
-      alert("submitted!");
-
-      alert({contact});
-      alert({...contact});
+      alert("Contact added!");
 
       //Create new contact (spread so it can fit the addContact properties)
       addContact(contact.name, contact.phone, contact.email);
@@ -64,6 +78,8 @@ export const ContactsPage = ({contacts, addContact}) => {
         phone: '',
         email: '',
       });
+    } else {
+      console.log("submit failed!");
     }
   };
 
