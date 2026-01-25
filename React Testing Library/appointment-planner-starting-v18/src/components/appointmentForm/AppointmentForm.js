@@ -25,12 +25,12 @@ export const AppointmentForm = ({
   return (
     <form onSubmit={handleSubmit}>
       <label htmlFor="title">Title:</label>
-      <input type="title" id="title" name="title" value={title} onChange={onChange}></input>
+      <input type="name" id="title" name="title" value={title} onChange={onChange}></input>
       <label htmlFor="date">Date:</label>
       <input type="date" id="date" name="date" value={date} min={getTodayString()} onChange={onChange}></input>
       <label htmlFor="time">Time:</label>
       <input type="time" id="time" name="time" value={time} onChange={onChange}></input>
-      <ContactPicker></ContactPicker>
+      <ContactPicker contacts={contacts} value={contact} name={title} onChange={onChange}/>
       <button type="submit">Submit</button>
     </form>
   );

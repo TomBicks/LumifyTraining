@@ -12,7 +12,7 @@ export const ContactsPage = ({contacts, addContact}) => {
     name: 'Tomas',
     phone: '0417',
     email: 'tommy@bick',
-  })
+  });
   const [duplicateName, setDuplicateName] = useState(false);
 
   /*
@@ -89,12 +89,12 @@ export const ContactsPage = ({contacts, addContact}) => {
           email={contact.email} 
           onChange={handleInputChange}
           handleSubmit={submitContact}
-        ></ContactForm>
+        />
       </section>
       <hr />
       <section>
         <h2>Contacts</h2>
-        <TileList objectData={contacts}></TileList>
+        <TileList objectData={contacts}/>
       </section>
     </div>
   );

@@ -10,10 +10,11 @@ export const ContactPicker = ({
     <div>
       <h4>This is a Contact Picker Element</h4>
       <select value={value} name={name} onChange={onChange}>
-        <option value="">No Contact Selected</option>
+        <option key="nothing" value="">No Contact Selected</option>
         {
-          //TODO!! Iteratively add option elements using the contact names from the array passed in via props
-          //contacts.map((cont) => <option>{cont.name}</option>)
+          //Returns a list of options for each contact in the contacts list; option selected's value is the entire client, not just their name 
+          //(though worried about practical application of this, for security purposes)
+          contacts.map((cont) => <option key={cont.name} value={cont}>{cont.name}</option>)
         }
       </select>
     </div>
