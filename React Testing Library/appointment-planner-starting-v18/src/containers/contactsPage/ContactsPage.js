@@ -22,7 +22,7 @@ export const ContactsPage = ({contacts, addContact}) => {
   //I personally think checking every change is too much, but at least this works; personally I'd make it only after attempting to submit
   useEffect(() => {
     const array = contacts;
-    if(array !== undefined) //?????? CHECK IF BETTER WAY TO DO THIS TOO!
+    //if(array !== undefined) //?????? CHECK IF BETTER WAY TO DO THIS TOO!
     alert(contacts.name)
     //Make sure the check is case insensitive, so that capitals don't allow for duplicate contacts
     const duplicate = contacts.find((existingContact) => existingContact.name.toLowerCase() == contact.name.toLowerCase());
@@ -36,6 +36,8 @@ export const ContactsPage = ({contacts, addContact}) => {
     e.preventDefault();
 
     //TODO!! GO OVER THIS SUBMISSION TO CHECK BEST WAY TO HAVE A SUCCESSFUL OR FAILED SUBMISSION, AS WELL AS HOW BEST TO CLEAR THE FIELDS
+
+    //SHOULD I BE GETTING THE CONTACT INFO FROM 'e'???
 
     const submitFailed = false;
     //Add contact info and clear data if the contact name is not a duplicate
@@ -54,6 +56,7 @@ export const ContactsPage = ({contacts, addContact}) => {
 
       //On a successful submission, clear the form
       //ERROR!! This appears to cause the useEffect to produce an error, as contacts becomes undefined!
+      //Judging by FormValidation task, this looks right; remove note later
       setContact({
         name: '',
         phone: '',
@@ -91,7 +94,7 @@ export const ContactsPage = ({contacts, addContact}) => {
       <hr />
       <section>
         <h2>Contacts</h2>
-        <TileList contacts={contacts}></TileList>
+        <TileList objectData={contacts}></TileList>
       </section>
     </div>
   );
