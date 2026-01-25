@@ -84,3 +84,13 @@ select {
 .tile-container {
   margin-bottom: 20px;
 }
+
+
+
+.error-message:empty {
+  display: none;
+}
+
+.error-message {
+  color: red;
+}

@@ -14,6 +14,7 @@ export const ContactsPage = ({contacts, addContact}) => {
     email: 'tommy@bick',
   });
   const [duplicateName, setDuplicateName] = useState(false);
+  const [errors, setErrors] = useState({});
 
   /*
   Using hooks, check for contact name in the 
@@ -41,19 +42,34 @@ export const ContactsPage = ({contacts, addContact}) => {
 
     //Start as valid = true, because if any *one* thing goes wrong, it's no longer valid, as opposed to *everything* going right to be valid
     let isValid = true;
+    let errs = {};
 
     console.log("Attemtping contact submission...");
     console.log(`e.target = ${e.target}`);
     console.log(`[...e.target] = ${[...e.target]}`);
     [...e.target].forEach((element) => {
-      console.log(`element = ${element}`);
+      //console.log(`element = ${element}`);
       console.log(`element.validity.valid = ${element.validity.valid}`);
       console.log(`element.dataset.error = ${element.dataset.error}`);
       console.log(`element.type = ${element.type}`);
 
       if(!element.validity.valid) {
         console.log(`Input of type ${element.type} and name ${element.name} is not valid`);
+        //console.log(`Errors before = ${errors}`);
+        //errors = {...errors, ...element.dataset.error}
+        //console.log(`Errors after = ${errors}`);
         isValid = false;
+
+        console.log(`Setting error for ${element.name} as ${element.dataset.error}`)
+        errs = ({
+          ...errs,
+          [element.name]: element.dataset.error
+        });
+        /*setErrors({
+          ...errors,
+          [element.name]: element.dataset.error
+        });*/
+        setErrors(errs);
       }
 
       //Exclude the submit input button
@@ -62,18 +78,19 @@ export const ContactsPage = ({contacts, addContact}) => {
       }
     })
 
+    alert(errors);
+
     //TODO!! GO OVER THIS SUBMISSION TO CHECK BEST WAY TO HAVE A SUCCESSFUL OR FAILED SUBMISSION, AS WELL AS HOW BEST TO CLEAR THE FIELDS
 
     //SHOULD I BE GETTING THE CONTACT INFO FROM 'e'???
 
-    const submitFailed = false;
     //Add contact info and clear data if the contact name is not a duplicate
     if(duplicateName) {
       alert("This name already exists in our contacts! Please change it.");
-      submitFailed = true;
+      isValid = false;
     }
 
-    if(!submitFailed) {
+    if(isValid) {
       alert("Contact added!");
 
       //Create new contact (spread so it can fit the addContact properties)
@@ -116,6 +133,7 @@ export const ContactsPage = ({contacts, addContact}) => {
           email={contact.email} 
           onChange={handleInputChange}
           handleSubmit={submitContact}
+          errors={errors}
         />
       </section>
       <hr />
