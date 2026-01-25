@@ -23,12 +23,14 @@ export const ContactsPage = ({contacts, addContact}) => {
   useEffect(() => {
     const array = contacts;
     //if(array !== undefined) //?????? CHECK IF BETTER WAY TO DO THIS TOO!
-    alert(`1st Contact's name is ${contacts[0].name}`)
+    //alert(`1st Contact's name is ${contacts[0].name}`)
     //Make sure the check is case insensitive, so that capitals don't allow for duplicate contacts
     const duplicate = contacts.find((existingContact) => existingContact.name.toLowerCase() == contact.name.toLowerCase());
 
     //Update state whether name already exists in contacts or not
     setDuplicateName(duplicate === undefined ? false : true);
+
+    //TODO!! NEED TO SHOW THE USER IMMEDIATELY THAT THE NAME IS DUPLICATE AND TO CHANGE IT; ALERT DOESN'T WORK HOWEVER!
   }, [contact.name]);
   
   //Handle submission and adding the contact; prevent submission if fields are missing, or if the name already exists in our contacts

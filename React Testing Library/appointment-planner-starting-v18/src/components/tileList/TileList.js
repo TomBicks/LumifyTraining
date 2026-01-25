@@ -7,7 +7,7 @@ export const TileList = ({objectData}) => {
       <h4>This is a TileList Element</h4>
       <ol>
       {
-        objectData.map((data) => <Tile key={data.name} name={data.name} description={[]}/>)
+        objectData.map((data) => <Tile key={data.name} name={data.name} description={[]}/>) //TODO!! Add descriptions to the objectData!!!
       }
       </ol>
     </div>
