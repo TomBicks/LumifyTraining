@@ -8,7 +8,7 @@ export const AppointmentsPage = (props) => {
   Define state variables for 
   appointment info
   */
-  const[appointment, setAppointment] = useState({});
+  const [appointment, setAppointment] = useState({});
 
   const submitAppointment = (e) => {
     e.preventDefault();
@@ -21,15 +21,15 @@ export const AppointmentsPage = (props) => {
 
   //Grab the name and value of the input event, then use that to determine which field of contact to fill in
   const handleInputChange = (input) => {
-    /*const inputName = input.target.name;
+    const inputName = input.target.name;
 		var value = input.target.value;
 		console.log("input name: " + inputName + ", input value: " + value);
 
     //Spread the contact to create a soft-copy, then insert the specified key-value pair, then update the contact state
-    setContact({
-      ...contact,
+    setAppointment({
+      ...appointment,
       [inputName]: value
-    });*/
+    });
 	};
 
   return (

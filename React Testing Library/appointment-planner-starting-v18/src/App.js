@@ -13,11 +13,16 @@ function App() {
   //Store contacts and appointsments as arrays of objects
   //DEBUG!! THIS IS AN EXAMPLE CONTACT!
   const [contacts, setContacts] = useState([
-    /*{
+    {
       name: "Tom",
       phone: "0412",
       email: "tomb@bick"
-    }*/
+    },
+    {
+      name: "Tabby",
+      phone: "0317",
+      email: "taby@mail"
+    },
   ]);
   const [appointments, setAppointments] = useState([]);
 

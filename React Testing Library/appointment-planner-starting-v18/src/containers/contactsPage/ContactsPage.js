@@ -23,7 +23,7 @@ export const ContactsPage = ({contacts, addContact}) => {
   useEffect(() => {
     const array = contacts;
     //if(array !== undefined) //?????? CHECK IF BETTER WAY TO DO THIS TOO!
-    alert(contacts.name)
+    alert(`1st Contact's name is ${contacts[0].name}`)
     //Make sure the check is case insensitive, so that capitals don't allow for duplicate contacts
     const duplicate = contacts.find((existingContact) => existingContact.name.toLowerCase() == contact.name.toLowerCase());
 
