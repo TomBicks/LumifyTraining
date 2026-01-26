@@ -4,10 +4,13 @@ import { Tile } from "../../components/tile/Tile";
 export const TileList = ({objectData}) => {
   return (
     <div>
-      <h4>This is a TileList Element</h4>
+      <h4></h4>
       <ol>
       {
-        objectData.map((data) => <Tile key={data.name} name={data.name} description={[]}/>) //TODO!! Add descriptions to the objectData!!!
+        objectData.map((data, index) => <Tile key={index} name={data.name} description={[
+          `Phone number is: ${data.phone}`,
+          `Email is ${data.email}`
+        ]}/>)
       }
       </ol>
     </div>
