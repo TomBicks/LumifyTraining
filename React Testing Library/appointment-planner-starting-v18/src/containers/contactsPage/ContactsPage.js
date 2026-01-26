@@ -23,10 +23,19 @@ export const ContactsPage = ({contacts, addContact}) => {
   //I personally think checking every change is too much, but at least this works; personally I'd make it only after attempting to submit
   useEffect(() => {
     //Make sure the check is case insensitive, so that capitals don't allow for duplicate contacts
-    const duplicate = contacts.find((existingContact) => existingContact.name.toLowerCase() == contact.name.toLowerCase());
+    const duplicate = contacts.some((existingContact) => existingContact.name.toLowerCase() == contact.name.toLowerCase());
     
     //Update state whether name already exists in contacts or not
-    setDuplicateName(duplicate === undefined ? false : true);
+    setDuplicateName(duplicate);
+
+    //NOTE!! This is one of two ways I've found to check for duplicate names on an input change. We were asked to use hooks for this example however, so this one is the one we'll go with.
+    //Check whether a duplicate name has been found and, if so, update the errors state to reflect our custom error message
+    if(duplicate) {
+      setErrors({
+        ...errors,
+        name: "This name already exists in our contacts! Please enter a different name."
+      })
+    }
   }, [contact.name]);
   
   //Handle submission and adding the contact; prevent submission if fields are missing, or if the name already exists in our contacts
@@ -97,31 +106,10 @@ export const ContactsPage = ({contacts, addContact}) => {
   //Grab the name and value of the input event, then use that to determine which field of contact to fill in
   const handleInputChange = (input) => {
     const inputName = input.target.name; //The name value of the input element
-    const isValid = input.target.validity.valid; //Whether the input's value is valid
+    let isValid = input.target.validity.valid; //Whether the input's value is valid
     const errMes = input.target.dataset.error; //The error message in the input element, to be displayed in an error
 		const value = input.target.value; //The value of the input element
 		console.log("input name: " + inputName + ", input value: " + value);
-
-    //Returns true if a name (case-insensitive) is found within contacts matching the one in input
-    //Need to check specifically against name; this is pulling from contact, so of course it doesnt work here!!!
-    //NOTE!!!!!
-    if(inputName == "name") {
-      //We check duplicate here, again, against the current name, because useEffect will only update the value for the next render, meaning we need this information live, here
-      const duplicate = contacts.some((existingContact) => existingContact.name.toLowerCase() == value.toLowerCase());
-      console.log(`Duplicate name in input = ${duplicate}`);
-
-      //Because a contact already in the system must therefore be a valid name, we can simply set errors.name to the message, without needing to worry about multi-line strings
-      //NOTE!! Using CSS, it is still possible to append this to our error string, and is useable in other scenarios
-      const duplicateNameErrMes = "This name already exists in our contacts! Please enter a different name."
-      console.log(duplicateNameErrMes);
-      console.log(errors.name);
-
-      setErrors({
-        ...errors,
-        [inputName]: duplicateNameErrMes
-      })
-      console.log(errors.name);
-    }
     
     if(!isValid) {
       //Set error message from input element to state, if input value is invalid
@@ -139,6 +127,30 @@ export const ContactsPage = ({contacts, addContact}) => {
         [inputName]: ""
       })
     }
+
+    //NOTE!! This is one of two ways I've found to check for duplicate names on an input change. We were asked to use hooks for this example however, so we won't be using this one, hence it's commented out.
+    //Check for duplicate names, a custom error (we do this after the usual error message adding above, as otherwise this custom message would get overwritten)
+    /*if(inputName == "name") {
+      //We check duplicate here, again, against the current name, because useEffect will only update the value for the next render, meaning we need this information live, here
+      const duplicate = contacts.some((existingContact) => existingContact.name.toLowerCase() == value.toLowerCase());
+      console.log(`Duplicate name in input = ${duplicate}`);
+
+      //Because a contact already in the system must therefore be a valid name, we can simply set errors.name to the message, without needing to worry about multi-line strings
+      //NOTE!! Using CSS, it is still possible to append this to our error string, and is useable in other scenarios
+      if(duplicate) {
+        const duplicateNameErrMes = "This name already exists in our contacts! Please enter a different name."
+        console.log(duplicateNameErrMes);
+        console.log(errors.name);
+
+        isValid = false;
+
+        setErrors({
+          ...errors,
+          [inputName]: duplicateNameErrMes
+        })
+      }
+      console.log(errors.name);
+    }*/
 
     //Spread the contact to create a soft-copy, then insert the specified key-value pair, then update the contact state
     setContact({
