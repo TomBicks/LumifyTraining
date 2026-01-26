@@ -32,24 +32,24 @@ function App() {
   */
   //Function to create a contact objects from provided info
   const addContact = (name, phone, email) => {
-    alert(`Creating new contact: ${name}, ${phone} and ${email}`);
+    //alert(`Creating new contact: ${name}, ${phone} and ${email}`);
+    console.log(`Creating new contact: ${name}, ${phone} and ${email}`);
+    console.log(contacts);
     //Create a new contact object using the provided info
     var newContact = {
       name: name,
-      phoneNo: phone,
+      phone: phone,
       email: email
     };
+    console.log(newContact);
 
     //Create a copy of the contacts array, then push the new contact to said array and update the state to reflect this
-    //ERROR!! prevState.contacts is undefined! This leads to .concat() failing, as undefined.concat is nonsense
-    setContacts(function(prevState) {
-      //alert(prevState.contacts);
-      //var contacts = prevState.contacts.concat();
-      contacts.push(newContact);
-      return {
-        contacts: contacts
-      }
-    });
+    //NOTE!! *Rememeber*, contacts is an *array* of objects, so setContacts needs to have an array inside it (setContacts([]<--))
+    setContacts([
+      ...contacts,
+      newContact
+    ]);
+    console.log("Finished adding contact")
  };
 
  //Function to create an appointment objects from provided info

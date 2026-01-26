@@ -10,8 +10,8 @@ export const ContactsPage = ({contacts, addContact}) => {
   */
   const[contact, setContact] = useState({
     name: 'Tomas',
-    phone: '0417',
-    email: 'tommy@bick',
+    phone: '0417111111',
+    email: 'tommy@bick.com',
   });
   const [duplicateName, setDuplicateName] = useState(false);
   const [errors, setErrors] = useState({});
@@ -66,8 +66,6 @@ export const ContactsPage = ({contacts, addContact}) => {
           [input.name]: input.dataset.error
         });
       }
-
-      console.log("----------" + input.type);
     })
 
     //If the entered contact name already exists in the system, display the custom error message and mark as invalid
@@ -86,6 +84,7 @@ export const ContactsPage = ({contacts, addContact}) => {
 
     //Add contact info and clear data if the contact name is not a duplicate
     if(isValid) {
+      console.log("submit succeeded!");
       alert("Contact added!");
 
       //Create new contact (destructure so it can fit the addContact properties)
@@ -113,6 +112,7 @@ export const ContactsPage = ({contacts, addContact}) => {
 		const value = input.target.value; //The value of the input element
 		console.log("input name: " + inputName + ", input value: " + value);
     
+    //Set the error messages on input change (You'd remove this if statement block if you wanted that functionality gone) (not including the handling in useEffect hook)
     if(!isValid) {
       //Set error message from input element to state, if input value is invalid
       console.log(`Input ${inputName} is invalid!`);
@@ -155,6 +155,7 @@ export const ContactsPage = ({contacts, addContact}) => {
     }*/
 
     //Spread the contact to create a soft-copy, then insert the specified key-value pair, then update the contact state
+    console.log(contact);
     setContact({
       ...contact,
       [inputName]: value
