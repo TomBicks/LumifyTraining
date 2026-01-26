@@ -168,9 +168,9 @@ export const ContactsPage = ({contacts, addContact}) => {
           name={contact.name} 
           phone={contact.phone}
           email={contact.email} 
+          errors={errors}
           onChange={handleInputChange}
           handleSubmit={submitContact}
-          errors={errors}
         />
       </section>
       <hr />

@@ -20,7 +20,7 @@ export const AppointmentForm = ({
   handleSubmit,
 }) => {
   return (
-    <form onSubmit={handleSubmit}>
+    <form noValidate onSubmit={handleSubmit}>
       <div>
         <label htmlFor="title">Title:</label>
         <input required type="title" id="title" name="title" value={title} data-error={"You must enter an appointment title."} onChange={onChange}/>
