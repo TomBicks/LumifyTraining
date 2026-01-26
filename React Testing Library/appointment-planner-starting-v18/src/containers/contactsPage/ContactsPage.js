@@ -14,7 +14,9 @@ export const ContactsPage = ({contacts, addContact}) => {
     email: 'tommy@bick',
   });
   const [duplicateName, setDuplicateName] = useState(false);
-  const [errors, setErrors] = useState({});
+  const [errors, setErrors] = useState({
+    name: "testing\nTest"
+  });
 
   /*
   Using hooks, check for contact name in the 
@@ -27,13 +29,15 @@ export const ContactsPage = ({contacts, addContact}) => {
     //alert(`1st Contact's name is ${contacts[0].name}`)
     //Make sure the check is case insensitive, so that capitals don't allow for duplicate contacts
     const duplicate = contacts.find((existingContact) => existingContact.name.toLowerCase() == contact.name.toLowerCase());
-    alert(`duplicate is ${duplicate}`);
+    //alert(`duplicate is ${duplicate}`);
+    
 
     //Update state whether name already exists in contacts or not
     setDuplicateName(duplicate === undefined ? false : true);
-    alert(`duplicateName is ${duplicateName}`);
+    //alert(`duplicateName is ${duplicateName}`);
 
     //TODO!! NEED TO SHOW THE USER IMMEDIATELY THAT THE NAME IS DUPLICATE AND TO CHANGE IT; ALERT DOESN'T WORK HOWEVER!
+    console.log(`Duplicate name in end of effect = ${duplicateName}`);
   }, [contact.name]);
   
   //Handle submission and adding the contact; prevent submission if fields are missing, or if the name already exists in our contacts
@@ -87,6 +91,10 @@ export const ContactsPage = ({contacts, addContact}) => {
     //Add contact info and clear data if the contact name is not a duplicate
     if(duplicateName) {
       alert("This name already exists in our contacts! Please change it.");
+      setErrors({
+        ...errors,
+        name: "This name already exists in our contacts! Please enter a different name."
+      })
       isValid = false;
     }
 
@@ -111,9 +119,49 @@ export const ContactsPage = ({contacts, addContact}) => {
 
   //Grab the name and value of the input event, then use that to determine which field of contact to fill in
   const handleInputChange = (input) => {
-    const inputName = input.target.name;
-		var value = input.target.value;
+    const inputName = input.target.name; //The name value of the input element
+    const isValid = input.target.validity.valid; //Whether the input's value is valid
+    const errMes = input.target.dataset.error; //The error message in the input element, to be displayed in an error
+		const value = input.target.value; //The value of the input element
 		console.log("input name: " + inputName + ", input value: " + value);
+
+    //Returns true if a name (case-insensitive) is found within contacts matching the one in input
+    //Need to check specifically against name; this is pulling from contact, so of course it doesnt work here!!!
+    //NOTE!!!!!
+    if(inputName == "name") {
+      //We check duplicate here, again, against the current name, because useEffect will only update the value for the next render, meaning we need this information live, here
+      const duplicate = contacts.some((existingContact) => existingContact.name.toLowerCase() == value.toLowerCase());
+      console.log(`Duplicate name in input = ${duplicate}`);
+
+      //Because a contact already in the system must therefore be a valid name, we can simply set errors.name to the message, without needing to worry about multi-line strings
+      //NOTE!! Using CSS, it is still possible to append this to our error string, and is useable in other scenarios
+      const duplicateNameErrMes = "This name already exists in our contacts! Please enter a different name."
+      console.log(duplicateNameErrMes);
+      console.log(errors.name);
+
+      setErrors({
+        ...errors,
+        [inputName]: duplicateNameErrMes
+      })
+      console.log(errors.name);
+    }
+    
+    if(!isValid) {
+      //Set error message from input element to state, if input value is invalid
+      console.log(`Input ${inputName} is invalid!`);
+      console.log(`Setting error message: ${errMes}`);
+      setErrors({
+        ...errors,
+        [inputName]: errMes
+      })
+    } else {
+      //Remove error message from state, if input value is valid
+      console.log(`Input ${inputName} is valid!`);
+      setErrors({
+        ...errors,
+        [inputName]: ""
+      })
+    }
 
     //Spread the contact to create a soft-copy, then insert the specified key-value pair, then update the contact state
     setContact({

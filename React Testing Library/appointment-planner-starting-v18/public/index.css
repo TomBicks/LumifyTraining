@@ -86,11 +86,14 @@ select {
 }
 
 
-
+/* My CSS */
+/* Error message element won't display when there's nothing inside it */
 .error-message:empty {
   display: none;
 }
 
+/* Error message text will be read, and will respect line breaks (\n) in all elements, allowing for multi-line errors */
 .error-message {
   color: red;
+  white-space: pre-wrap
 }
