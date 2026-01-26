@@ -65,7 +65,6 @@ export const ContactsPage = ({contacts, addContact}) => {
           ...errs,
           [input.name]: input.dataset.error
         });
-        setErrors(errs);
       }
 
       console.log("----------" + input.type);
@@ -75,12 +74,15 @@ export const ContactsPage = ({contacts, addContact}) => {
     //Because submit can only happen after a render, we're safe to just check duplicateName, rather than maing our own checks
     if(duplicateName) {
       alert("This name already exists in our contacts! Please change it.");
-      setErrors({
-        ...errors,
+      errs = ({
+        ...errs,
         name: "This name already exists in our contacts! Please enter a different name."
       })
       isValid = false;
     }
+
+    //After regular and custom error messages have been bundled up, update the errors state to reflect them
+    setErrors(errs);
 
     //Add contact info and clear data if the contact name is not a duplicate
     if(isValid) {
