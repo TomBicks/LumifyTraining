@@ -8,7 +8,9 @@ export const AppointmentsPage = (props) => {
   Define state variables for 
   appointment info
   */
-  const [appointment, setAppointment] = useState({});
+  const [appointment, setAppointment] = useState({
+    title: "test"
+  });
 
   const submitAppointment = (e) => {
     e.preventDefault();
@@ -38,10 +40,10 @@ export const AppointmentsPage = (props) => {
         <h2>Add Appointment</h2>
         <AppointmentForm
           contacts={props.contacts}
-          name={''}
-          contact={''}
-          data={''}
-          time={''}
+          title={appointment.title}
+          contact={appointment.contact}
+          date={appointment.date}
+          time={appointment.time}
           onChange={handleInputChange}
           handleSubmit={submitAppointment}
         />

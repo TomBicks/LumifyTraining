@@ -25,7 +25,7 @@ export const AppointmentForm = ({
   return (
     <form onSubmit={handleSubmit}>
       <label htmlFor="title">Title:</label>
-      <input type="name" id="title" name="title" value={title} onChange={onChange}/>
+      <input type="title" id="title" name="title" value={title} onChange={onChange}/>
       <label htmlFor="date">Date:</label>
       <input type="date" id="date" name="date" value={date} min={getTodayString()} onChange={onChange}/>
       <label htmlFor="time">Time:</label>
