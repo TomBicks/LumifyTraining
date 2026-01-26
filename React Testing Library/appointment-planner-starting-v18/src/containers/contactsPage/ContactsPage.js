@@ -91,9 +91,6 @@ export const ContactsPage = ({contacts, addContact}) => {
       addContact(contact.name, contact.phone, contact.email);
 
       //On a successful submission, clear the form
-      //ERROR!! This appears to cause the useEffect to produce an error, as contacts becomes undefined!
-      //ERROR!! This appears to be causing issues with TileList, with objectData being undefined!
-      //Judging by FormValidation task, this looks right; remove note later
       setContact({
         name: '',
         phone: '',
