@@ -4,9 +4,9 @@ export const ContactForm = ({
   name,
   phone,
   email,
+  errors,
   onChange,
   handleSubmit,
-  errors
 }) => {
   return (
     // --- RegEx Patterns ---
@@ -18,7 +18,7 @@ export const ContactForm = ({
     <form noValidate onSubmit={handleSubmit}>
       <div>
         <label htmlFor="name">Name:</label>
-        <input required type="name" id="name" name="name" value={name} data-error={"You must enter a valid name."} pattern="^[A-Za-z,\-'\s]{2,}$"onChange={onChange}/>
+        <input required type="name" id="name" name="name" value={name} data-error={"You must enter a valid name."} pattern="^[A-Za-z,\-'\s]{2,}$" onChange={onChange}/>
         <span className="error-message">{errors.name}</span>
       </div>
 

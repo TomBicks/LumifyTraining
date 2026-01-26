@@ -12,25 +12,39 @@ const getTodayString = () => {
 export const AppointmentForm = ({
   contacts,
   title,
-  setTitle,
   contact,
-  setContact,
   date,
-  setDate,
   time,
-  setTime,
+  errors,
   onChange,
-  handleSubmit
+  handleSubmit,
 }) => {
   return (
     <form onSubmit={handleSubmit}>
-      <label htmlFor="title">Title:</label>
-      <input type="title" id="title" name="title" value={title} onChange={onChange}/>
-      <label htmlFor="date">Date:</label>
-      <input type="date" id="date" name="date" value={date} min={getTodayString()} onChange={onChange}/>
-      <label htmlFor="time">Time:</label>
-      <input type="time" id="time" name="time" value={time} onChange={onChange}/>
-      <ContactPicker contacts={contacts} value={contact} name={title} onChange={onChange}/>
+      <div>
+        <label htmlFor="title">Title:</label>
+        <input required type="title" id="title" name="title" value={title} data-error={"You must enter an appointment title."} onChange={onChange}/>
+        <span className="error-message">{errors.title}</span>
+      </div>
+
+      <div>
+        <label htmlFor="date">Date:</label>
+        <input required type="date" id="date" name="date" value={date} min={getTodayString()} data-error={"You must select a date."} onChange={onChange}/>
+        <span className="error-message">{errors.date}</span>
+      </div>
+
+      <div>
+        <label htmlFor="time">Time:</label>
+        <input required type="time" id="time" name="time" value={time} data-error={"You must enter a time."} onChange={onChange}/>
+        <span className="error-message">{errors.time}</span>
+      </div>
+
+      {/* TODO!! Not sure if data-errors will work for a react component like ContactPicker */}
+      <div>
+        <ContactPicker contacts={contacts} value={contact} name={title} onChange={onChange}/>
+        <span className="error-message">{errors.contact}</span>
+      </div>
+
       <input type="submit" value="Submit"/>
     </form>
   );
