@@ -14,9 +14,7 @@ export const ContactsPage = ({contacts, addContact}) => {
     email: 'tommy@bick',
   });
   const [duplicateName, setDuplicateName] = useState(false);
-  const [errors, setErrors] = useState({
-    name: "testing\nTest"
-  });
+  const [errors, setErrors] = useState({});
 
   /*
   Using hooks, check for contact name in the 
@@ -24,20 +22,11 @@ export const ContactsPage = ({contacts, addContact}) => {
   */
   //I personally think checking every change is too much, but at least this works; personally I'd make it only after attempting to submit
   useEffect(() => {
-    const array = contacts;
-    //if(array !== undefined) //?????? CHECK IF BETTER WAY TO DO THIS TOO!
-    //alert(`1st Contact's name is ${contacts[0].name}`)
     //Make sure the check is case insensitive, so that capitals don't allow for duplicate contacts
     const duplicate = contacts.find((existingContact) => existingContact.name.toLowerCase() == contact.name.toLowerCase());
-    //alert(`duplicate is ${duplicate}`);
     
-
     //Update state whether name already exists in contacts or not
     setDuplicateName(duplicate === undefined ? false : true);
-    //alert(`duplicateName is ${duplicateName}`);
-
-    //TODO!! NEED TO SHOW THE USER IMMEDIATELY THAT THE NAME IS DUPLICATE AND TO CHANGE IT; ALERT DOESN'T WORK HOWEVER!
-    console.log(`Duplicate name in end of effect = ${duplicateName}`);
   }, [contact.name]);
   
   //Handle submission and adding the contact; prevent submission if fields are missing, or if the name already exists in our contacts
@@ -48,47 +37,33 @@ export const ContactsPage = ({contacts, addContact}) => {
     let isValid = true;
     let errs = {};
 
-    console.log("Attemtping contact submission...");
-    console.log(`e.target = ${e.target}`);
-    console.log(`[...e.target] = ${[...e.target]}`);
-    [...e.target].forEach((element) => {
-      //console.log(`element = ${element}`);
-      console.log(`element.validity.valid = ${element.validity.valid}`);
-      console.log(`element.dataset.error = ${element.dataset.error}`);
-      console.log(`element.type = ${element.type}`);
+    //Use spread syntax so we can handle each input element individually (including the submit button input technically)
+    [...e.target].forEach((input) => {
 
-      if(!element.validity.valid) {
-        console.log(`Input of type ${element.type} and name ${element.name} is not valid`);
-        //console.log(`Errors before = ${errors}`);
-        //errors = {...errors, ...element.dataset.error}
-        //console.log(`Errors after = ${errors}`);
+      //Exclude the submit input button
+      if(input.type === "submit") {
+        console.log(`Element ${input} is the submit button`);
+        return; //Skips this iteration of the for loop; nothing to do for submit button
+      }
+
+      //If the input element in invalid, set isValid to false and provide any error messages to the errors state for displaying
+      if(!input.validity.valid) {
         isValid = false;
 
-        console.log(`Setting error for ${element.name} as ${element.dataset.error}`)
+        //NOTE!! Because state setters aren't instant, we need to bundle up all the errors into a single object before sending that off to the errors state.
+        //This is unlike the handleInputChange where, after each input, it has time to update the state between renders
         errs = ({
           ...errs,
-          [element.name]: element.dataset.error
+          [input.name]: input.dataset.error
         });
-        /*setErrors({
-          ...errors,
-          [element.name]: element.dataset.error
-        });*/
         setErrors(errs);
       }
 
-      //Exclude the submit input button
-      if(element.type === "submit") {
-        console.log(`Element ${element} is the submit button`);
-      }
+      console.log("----------" + input.type);
     })
 
-    alert(errors);
-
-    //TODO!! GO OVER THIS SUBMISSION TO CHECK BEST WAY TO HAVE A SUCCESSFUL OR FAILED SUBMISSION, AS WELL AS HOW BEST TO CLEAR THE FIELDS
-
-    //SHOULD I BE GETTING THE CONTACT INFO FROM 'e'???
-
-    //Add contact info and clear data if the contact name is not a duplicate
+    //If the entered contact name already exists in the system, display the custom error message and mark as invalid
+    //Because submit can only happen after a render, we're safe to just check duplicateName, rather than maing our own checks
     if(duplicateName) {
       alert("This name already exists in our contacts! Please change it.");
       setErrors({
@@ -98,14 +73,16 @@ export const ContactsPage = ({contacts, addContact}) => {
       isValid = false;
     }
 
+    //Add contact info and clear data if the contact name is not a duplicate
     if(isValid) {
       alert("Contact added!");
 
-      //Create new contact (spread so it can fit the addContact properties)
+      //Create new contact (destructure so it can fit the addContact properties)
       addContact(contact.name, contact.phone, contact.email);
 
       //On a successful submission, clear the form
       //ERROR!! This appears to cause the useEffect to produce an error, as contacts becomes undefined!
+      //ERROR!! This appears to be causing issues with TileList, with objectData being undefined!
       //Judging by FormValidation task, this looks right; remove note later
       setContact({
         name: '',
