@@ -1,6 +1,6 @@
 import React from "react";
 
-//Capitlises the first letter of a string, then returns it
+//Grabs the first letter of a string, capitlises it, then contacts it with the rest of the string beyond the first character, returning a capitlised string
 //NOTE!! We're using this to make the type capitlised, so we can use it in a nicer looking way
 const capitalise = (str) => {
   return str[0].toUpperCase() + str.slice(1);

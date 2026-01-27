@@ -4,7 +4,6 @@ export const ContactPicker = ({
   contacts,
   onChange,
   value,
-  name
 }) => {
   return (
     <div>
