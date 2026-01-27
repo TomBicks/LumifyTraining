@@ -4,7 +4,6 @@ import PetDetailsPage from './pages/detail';
 import PetDetailsNotFound from './pages/petDetailsNotFound';
 import Root from './components/root';
 
-//SELF NOTE!! Last Task completed = 24
 //Start with npm start
 //Video Tutorial for code: https://www.youtube.com/watch?v=jxyeh-BrUuI
 
@@ -20,6 +19,8 @@ const appRouter = createBrowserRouter(createRoutesFromElements(
     <Route path=":type" element={ <HomePage/> }/>
     <Route path=":type/:id" element={ <PetDetailsPage/> }/>
     <Route path="search" element={ <SearchPage/> }/>
+    {/* The pet "Dottie" has no entry, so will return an error and lead to this page when presses */}
+    <Route path="pet-details-not-found" element={ <PetDetailsNotFound/> }/>
   </Route>
 ));
 
