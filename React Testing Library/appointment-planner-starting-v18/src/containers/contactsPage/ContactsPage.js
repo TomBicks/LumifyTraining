@@ -8,10 +8,12 @@ export const ContactsPage = ({contacts, addContact}) => {
   Define state variables for 
   contact info and duplicate check
   */
+  //Set contact values as an empty string, so the inputs they're associated with don't transition from undefined to having a value (uncontrolled to controlled, a bad thing to do)
+  //https://reactjs.org/link/controlled-components
   const[contact, setContact] = useState({
-    name: 'Tomas',
-    phone: '0417111111',
-    email: 'tommy@bick.com',
+    name: '',
+    phone: '',
+    email: '',
   });
   const [duplicateName, setDuplicateName] = useState(false);
   const [errors, setErrors] = useState({});

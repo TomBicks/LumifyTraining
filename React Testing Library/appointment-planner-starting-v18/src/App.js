@@ -11,27 +11,8 @@ function App() {
   contacts and appointments 
   */
   //Store contacts and appointsments as arrays of objects
-  //DEBUG!! THIS IS AN EXAMPLE CONTACT!
-  const [contacts, setContacts] = useState([
-    {
-      name: "Tom",
-      phone: "0412",
-      email: "tomb@bick"
-    },
-    {
-      name: "Tabby",
-      phone: "0317",
-      email: "taby@mail"
-    },
-  ]);
-  const [appointments, setAppointments] = useState([
-    {
-      name: "Dentist",
-      date: '2026-02-04',
-      time: '03:30',
-      contact: "Tabby"
-    }
-  ]);
+  const [contacts, setContacts] = useState([]);
+  const [appointments, setAppointments] = useState([]);
 
   /*
   Implement functions to add data to

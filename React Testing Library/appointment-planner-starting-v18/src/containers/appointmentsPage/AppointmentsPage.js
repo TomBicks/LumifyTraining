@@ -8,11 +8,13 @@ export const AppointmentsPage = ({appointments, contacts, addAppointment}) => {
   Define state variables for 
   appointment info
   */
+  //Set appointment values as an empty string, so the inputs they're associated with don't transition from undefined to having a value (uncontrolled to controlled, a bad thing to do)
+  //https://reactjs.org/link/controlled-components
   const [appointment, setAppointment] = useState({
-    name: "test",
-    date: '2026-01-30',
-    time: '01:59',
-    contact: "Tom"
+    name: '',
+    date: '',
+    time: '',
+    contact: ''
   });
   const [errors, setErrors] = useState({});
 
