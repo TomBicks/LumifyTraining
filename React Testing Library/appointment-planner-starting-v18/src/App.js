@@ -5,6 +5,7 @@ import Root, { ROUTES } from "./components/root/Root";
 import { AppointmentsPage } from "./containers/appointmentsPage/AppointmentsPage";
 import { ContactsPage } from "./containers/contactsPage/ContactsPage";
 
+//Start using 'npm start'
 function App() {
   /*
   Define state variables for 
