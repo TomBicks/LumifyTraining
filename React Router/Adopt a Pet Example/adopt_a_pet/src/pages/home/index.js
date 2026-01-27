@@ -3,12 +3,15 @@ import { getPets } from '../../api/petfinder';
 import Hero from '../../components/hero';
 
 // import useParams
+import { useParams } from 'react-router-dom';
 // import Link
 
 const HomePage = () => {
   const [data, setData] = useState(null);
-  const type = ''; // Fix me!
+  //useParams returns an object, so be sure to have type in curly brackets; as an object
+  const {type} = useParams();
 
+  //When type changes, we use a hook to asynchronously pass type to our API’s getPets method which fetches pets of the specified type to be rendered on the page
   useEffect(() => {
     async function getPetsData() {
       const petsData = await getPets(type);
