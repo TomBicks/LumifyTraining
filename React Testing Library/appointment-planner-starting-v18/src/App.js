@@ -24,7 +24,14 @@ function App() {
       email: "taby@mail"
     },
   ]);
-  const [appointments, setAppointments] = useState([]);
+  const [appointments, setAppointments] = useState([
+    {
+      name: "Dentist",
+      date: '2026-02-04',
+      time: '03:30',
+      contact: "Tabby"
+    }
+  ]);
 
   /*
   Implement functions to add data to
@@ -53,10 +60,11 @@ function App() {
  };
 
  //Function to create an appointment objects from provided info
- const addAppointment = (title, date, time, contact) => {
+ const addAppointment = (name, date, time, contact) => {
+    console.log(`Creating new appointment: ${name}, ${date}, ${time} and ${contact}`);
     //Create a new appointment object using the provided info
     var newAppointment = {
-      title: title,
+      name: name,
       contact: contact,
       date: date,
       time: time

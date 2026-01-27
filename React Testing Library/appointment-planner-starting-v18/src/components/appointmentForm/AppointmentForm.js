@@ -11,7 +11,7 @@ const getTodayString = () => {
 
 export const AppointmentForm = ({
   contacts,
-  title,
+  name,
   contact,
   date,
   time,
@@ -22,9 +22,9 @@ export const AppointmentForm = ({
   return (
     <form noValidate onSubmit={handleSubmit}>
       <div>
-        <label htmlFor="title">Title:</label>
-        <input required type="title" id="title" name="title" value={title} data-error={"You must enter an appointment title."} onChange={onChange}/>
-        <span className="error-message">{errors.title}</span>
+        <label htmlFor="name">Appointment Title:</label>
+        <input required type="title" id="name" name="name" value={name} data-error={"You must enter an appointment title."} onChange={onChange}/>
+        <span className="error-message">{errors.name}</span>
       </div>
 
       <div>
@@ -39,9 +39,10 @@ export const AppointmentForm = ({
         <span className="error-message">{errors.time}</span>
       </div>
 
-      {/* TODO!! Not sure if data-errors will work for a react component like ContactPicker */}
+      {/* TODO!! Not sure if data-errors will work for a react component like ContactPicker */
+      /* ERROR!! ContactPicker isn't working after a single submission, nor is the contact being saved to the appointment */}
       <div>
-        <ContactPicker contacts={contacts} value={contact} name={title} onChange={onChange}/>
+        <ContactPicker contacts={contacts} value={contact} name={name} onChange={onChange}/>
         <span className="error-message">{errors.contact}</span>
       </div>
 

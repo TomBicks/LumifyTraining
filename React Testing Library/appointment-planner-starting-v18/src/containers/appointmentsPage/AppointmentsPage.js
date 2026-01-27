@@ -9,7 +9,10 @@ export const AppointmentsPage = ({appointments, contacts, addAppointment}) => {
   appointment info
   */
   const [appointment, setAppointment] = useState({
-    title: "test"
+    name: "test",
+    date: '2026-01-30',
+    time: '01:59',
+    contact: "Tom"
   });
   const [errors, setErrors] = useState({});
 
@@ -52,11 +55,11 @@ export const AppointmentsPage = ({appointments, contacts, addAppointment}) => {
       alert("Appointment added!");
 
       //Create new appointment (destructure so it can fit the addAppointment properties)
-      addAppointment(appointment.title, appointment.date, appointment.time, appointment.contact);
+      addAppointment(appointment.name, appointment.date, appointment.time, appointment.contact);
 
       //On a successful submission, clear the form
       setAppointment({
-        title: '',
+        name: '',
         date: '',
         time: '',
         contact: ''
@@ -106,7 +109,7 @@ export const AppointmentsPage = ({appointments, contacts, addAppointment}) => {
         <h2>Add Appointment</h2>
         <AppointmentForm
           contacts={contacts}
-          title={appointment.title}
+          name={appointment.name}
           contact={appointment.contact}
           date={appointment.date}
           time={appointment.time}
@@ -119,7 +122,7 @@ export const AppointmentsPage = ({appointments, contacts, addAppointment}) => {
       <section>
         <h2>Appointments</h2>
         {/* TODO!! EXTRA HOMEWORK!! Make it that the TileLists also display any appointments associated with the contact, under a clickable revealed component*/}
-        <TileList objectData={contacts}/>
+        <TileList objectData={appointments}/>
       </section>
     </div>
   );

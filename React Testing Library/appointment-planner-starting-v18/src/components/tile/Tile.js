@@ -1,5 +1,11 @@
 import React from "react";
 
+//Capitlises the first letter of a string, then returns it
+//NOTE!! We're using this to make the type capitlised, so we can use it in a nicer looking way
+const capitalise = (str) => {
+  return str[0].toUpperCase() + str.slice(1);
+};
+
 export const Tile = ({name, description}) => {
   return (
     <div className="tile-container">
@@ -9,7 +15,7 @@ export const Tile = ({name, description}) => {
         //By using Object.entries, we can iterate over an object as we would an array, meaning .map works here
         //NOTE!! Not sure why, but it's important key, value are in an array; without them, or in a {}, it gets weird and wrong
         Object.entries(description).map(([key, value]) => 
-          <p className="tile" key={key}>Detail {key} is {value}</p>
+          <p className="tile" key={key}>{capitalise(key)} is {value}</p>
         )
       }
     </div>
