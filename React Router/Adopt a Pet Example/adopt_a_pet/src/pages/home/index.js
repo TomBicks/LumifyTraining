@@ -34,6 +34,7 @@ const HomePage = () => {
         available for adoption near you
       </h3>
 
+      {/* The Link component in React is used to define the basic navigation between routes while the NavLink Component provides extra stylings to indicate the active route in the navbar based on the active URL */}
       {data.length ? (
         <div className="grid">
           {data.map((animal) => (
