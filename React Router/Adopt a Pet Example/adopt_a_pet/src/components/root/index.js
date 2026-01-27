@@ -7,6 +7,7 @@ const Root = () => {
     return (
         <>
             <Navigation/>
+            {/* Outlet tells the parent route where it should render nested elements */}
             <Outlet/>
         </>
     );
