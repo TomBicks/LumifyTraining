@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import ROUTES from "../../app/routes";
 // import selector
 //NOTE!! Because we're importing from a file in the same folder, we can just access it from "./[filename.xx]"
-import { selectTopics } from './topicsSlice.js';
+import { selectAllTopics } from './topicsSlice.js';
 
 export default function Topics() {
   //A call to the selector to select all the topics in state
