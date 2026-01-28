@@ -1,10 +1,14 @@
 import React from "react";
+import { useSelector } from "react-redux"; //TODO!! Task didn't specifically ask for useSelector, but an older example used it; make sure this is correct later
 import { Link } from "react-router-dom";
 import ROUTES from "../../app/routes";
 // import selector
+//NOTE!! Because we're importing from a file in the same folder, we can just access it from "./[filename.xx]"
+import { selectTopics } from './topicsSlice.js';
 
 export default function Topics() {
-  const topics = {}; // replace this with a call to your selector to select all the topics in state
+  //A call to the selector to select all the topics in state
+  const topics = useSelector(selectAllTopics);
 
   return (
     <section className="center">

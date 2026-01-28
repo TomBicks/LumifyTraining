@@ -28,7 +28,7 @@ const topicsSlice = createSlice({
 
 //Selectors
 //TODO!! Considered Reselect package library? Provides Selector functions that are "Memoized"
-export const selectTopics = (state) => state.topics;
+export const selectAllTopics = (state) => state.topics;
 
 //Exports
 console.log(topicsSlice);
