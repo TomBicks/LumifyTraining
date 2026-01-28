@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 //NOTE!! Topics' property quizIds hold references to quizzes, which in turn hold cardIds as references to cards
+//NOTE/TODO!! the empty topics object here in initialState will in turn be filled with another topics object, leading to the desired nested topics object structure. but *why* is there now a topics object within another topcis object???
 const initialState = {
     topics: {}
 };
