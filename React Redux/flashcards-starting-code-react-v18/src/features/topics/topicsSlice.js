@@ -24,11 +24,13 @@ const topicsSlice = createSlice({
                     quizIds: []
                 }
             };
-            //TODO!! Does state.push work for an object here, using Immer?
-            state.topics.push(topic);
+            //NOTE!! Remember, can't use .push for an object
+            //ERROR!! THis doesn't save the last state; it overwrites the topic with the next one
+            state.topics = topic;
+            //return state.topics.topics;
         }
     }
-})
+});
 
 //Selectors
 //TODO!! Considered Reselect package library? Provides Selector functions that are "Memoized"
@@ -65,8 +67,7 @@ export default topicsSlice.reducer;
 
 (DONE) - Each topic object added to the state should also have a quizIds property, which will correspond to an array containing the ids of each quiz associated with the topic. When a topic is first created, it won’t have any associated quizzes, but you should still create an empty quizIds array so that all topics in the state conform to the same shape.
 
-(DONE???) - Create a selector that selects the topics object nested within initialState.
-    - Not sure if they want state.topic or state.topics.topics
+(DONE) - Create a selector that selects the topics object nested within initialState.
 
 (DONE) - Export the selector as well as the action creators and reducer that your slice generates.
 
