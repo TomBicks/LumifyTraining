@@ -9,6 +9,11 @@ import { selectAllTopics } from './topicsSlice.js';
 export default function Topics() {
   //A call to the selector to select all the topics in state
   const topics = useSelector(selectAllTopics);
+  //DEBUG CODE!!
+  console.log("topics from selectAllTopics selector:");
+  console.log(topics);
+  console.log("topics.topics from selectAllTopics selector:");
+  console.log(topics.topics);
 
   return (
     <section className="center">

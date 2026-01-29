@@ -3,7 +3,11 @@ import { createSlice } from "@reduxjs/toolkit";
 //NOTE!! Topics' property quizIds hold references to quizzes, which in turn hold cardIds as references to cards
 //NOTE/TODO!! the empty topics object here in initialState will in turn be filled with another topics object, leading to the desired nested topics object structure. but *why* is there now a topics object within another topcis object???
 const initialState = {
-    topics: {}
+    //ERROR!! Having 'topics: {}' inside here causes an issue at Topics.js with 'topic.quizIds.length' in a topics.map function; could this mean the initialState is supposed to be completely empty?
+    //And yet, the selector passes out 'state.topics'; shouldn't that mean it should work???
+    topics: {},
+    //DEBUG CODE!! Testing where the initial state stems from
+    favouriteTopics: {}
 };
 
 const topicsSlice = createSlice({
@@ -28,11 +32,25 @@ const topicsSlice = createSlice({
 
 //Selectors
 //TODO!! Considered Reselect package library? Provides Selector functions that are "Memoized"
-export const selectAllTopics = (state) => state.topics;
+//"Create a selector that selects the topics object nested within initialState."
+/*NOTE!! retrieving 'state' from this selector looks like;
+{
+    topics: {
+        topics: {}
+        favouriteTopics: {}
+    }
+} 
+This means that 'state.topic' retrieves the object containing 'topics' and 'favouriteTopics' objects, and 'state.topics.topics' retrieves the empty topics object*/
+export const selectAllTopics = (state) => state; //TODO!! Should be state.topics??
+console.log("initialState:");
+console.log(initialState);
+console.log("initialState.topics:");
+console.log(initialState.topics);
 
 //Exports
+console.log("topicsSlice:");
 console.log(topicsSlice);
-export const { addBook } = topicsSlice.actions;
+export const { addTopic } = topicsSlice.actions;
 export default topicsSlice.reducer;
 
 /*
