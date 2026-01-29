@@ -7,15 +7,6 @@ import { selectAllQuizzes } from "./quizzesSlice";
 
 export default function Quizzes() {
   const quizzes = useSelector(selectAllQuizzes);
-  console.log("quizzes");
-  console.log(quizzes);
-  Object.values(quizzes).map((quiz) => {
-    console.log("quiz");
-    console.log(quiz);
-    console.log("quiz.id");
-    console.log(quiz.id);
-  });
-
 
   return (
     <section className="center">

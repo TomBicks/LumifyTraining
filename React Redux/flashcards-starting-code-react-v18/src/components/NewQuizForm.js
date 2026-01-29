@@ -33,10 +33,13 @@ export default function NewQuizForm() {
         id: cardId
       }))
     })
+
+    console.log("cardIds");
+    console.log(cardIds);
     
 
     // create the new quiz here
-    const quizId = uuidv4();
+    //?????const quizId = uuidv4();
 
     // dispatch add quiz action 
     dispatch(addQuiz({
