@@ -41,7 +41,8 @@ const topicsSlice = createSlice({
     }
 } 
 This means that 'state.topic' retrieves the object containing 'topics' and 'favouriteTopics' objects, and 'state.topics.topics' retrieves the empty topics object*/
-export const selectAllTopics = (state) => state; //TODO!! Should be state.topics??
+//Thus, to have the selector retrieve the nested topics object, which will contain all the individual topic objects, we output 'state.topics.topics'
+export const selectAllTopics = (state) => state.topics.topics;
 console.log("initialState:");
 console.log(initialState);
 console.log("initialState.topics:");
