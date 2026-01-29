@@ -4,13 +4,14 @@ import { useNavigate } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid"; //This app uses uuidv4() function from the uuid package to create unique identifiers for topics/quizzes/cards
 import ROUTES from "../app/routes";
 // import selectors
+import { selectAllTopics } from "../features/topics/topicsSlice";
 
 export default function NewQuizForm() {
   const [name, setName] = useState("");
   const [cards, setCards] = useState([]);
   const [topicId, setTopicId] = useState("");
   const navigate = useNavigate();
-  const topics = {};  // Replace with topics 
+  const topics = useSelector(selectAllTopics);
   const dispatch = useDispatch();
 
   const handleSubmit = (e) => {
