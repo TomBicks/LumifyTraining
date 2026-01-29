@@ -23,23 +23,8 @@ const cardsSlice = createSlice({
 //NOTE!! This is how you pass arguments to a selector
 //TODO!! This is unlikely to be the best way to go about this, but I really wasn't sure how else to better find and return the card of the corresponding id from the cards object
 export const selectCardId = (cardId) => (state) => {
-    console.log("id");
-    console.log(cardId);
-    console.log("state");
-    console.log(state);
-    console.log(state.cards);
-    console.log(state.cards.cards);
-    console.log(Object.keys(state.cards.cards));
-    console.log(Object.values(state.cards.cards));
-
     const cards = Object.values(state.cards.cards);
-    const result = cards.find((card) => 
-        //console.log("card");
-        //console.log(card);
-        card.id === cardId
-    )
-    console.log("result");
-    console.log(result);
+    const result = cards.find((card) => card.id === cardId)
 
     return result;
 }
