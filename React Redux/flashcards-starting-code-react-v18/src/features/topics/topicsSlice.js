@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { current } from '@reduxjs/toolkit'
+import { current } from '@reduxjs/toolkit' //Allows us to grab the current state easily in an action
 
 //NOTE!! Topics' property quizIds hold references to quizzes, which in turn hold cardIds as references to cards
 //TODO!! the empty topics object here in initialState will in turn be filled with another topics object, leading to the desired nested topics object structure. but *why* is there now a topics object within another topcis object???
@@ -17,13 +17,12 @@ const topicsSlice = createSlice({
         addTopic(state, action) {
             const { id, name, icon } = action.payload;
 
+            //Create an object
             const test = {
-                [id]: {
-                    id: id,
-                    name: name,
-                    icon: icon,
-                    quizIds: []
-                }
+                id: id,
+                name: name,
+                icon: icon,
+                quizIds: []
             }
             console.log("test");
             console.log(test);
@@ -42,12 +41,16 @@ const topicsSlice = createSlice({
             console.log(current(state));
             //state.topics = test;
             //Spreading causes the issue with the variable name. If it's just state.topics = test, it works fine, overwriting notwithstanding
-            state.topics = {
+            /*state.topics = {
                 ...state.topics,
                 test
-            }
+            }*/
+
+            //Shove the object in at the desired id; this is how to do it with an object mutably, which we don't have to worry about because createSlice has Immer inbuilt
+            state.topics[id] = test;
             console.log("current State");
             console.log(current(state));
+
 
             //NOTE!! Remember, can't use .push for an object
             //NOTE!! If we store the object we're attemtping to create into a variable and add it to state.topics, it'll be an object with the name of the variable (e.g. state.topics.topics.topic.[id], rather than just getting added into the nested topics object)
