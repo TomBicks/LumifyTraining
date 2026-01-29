@@ -16,18 +16,19 @@ const topicsSlice = createSlice({
     reducers: {
         //Example payload = {id: '123456', name: 'name of topic', icon: 'icon url'}
         addTopic(state, action) {
-            const topic = {
-                [action.payload.id]: {
-                    id: action.payload.id,
-                    name: action.payload.name,
-                    icon: action.payload.icon,
+            const { id, name, icon } = action.payload;
+
+            //NOTE!! Remember, can't use .push for an object
+            //NOTE!! If we store the object we're attemtping to create into a variable and add it to state.topics, it'll be an object with the name of the variable (e.g. state.topics.topics.topic.[id], rather than just getting added into the nested topics object)
+            state.topics = {
+                ...state.topics, 
+                [id]: {
+                    id: id,
+                    name: name,
+                    icon: icon,
                     quizIds: []
                 }
             };
-            //NOTE!! Remember, can't use .push for an object
-            //ERROR!! THis doesn't save the last state; it overwrites the topic with the next one
-            state.topics = topic;
-            //return state.topics.topics;
         }
     }
 });
