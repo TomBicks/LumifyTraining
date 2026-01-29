@@ -20,7 +20,7 @@ const quizzesSlice = createSlice({
 });
 
 //Selectors
-export const selectAllQuizzes = (state) => state.quizzes;
+export const selectAllQuizzes = (state) => state.quizzes.quizzes;
 
 //Exports
 export const { addQuiz } = quizzesSlice.actions;
@@ -38,6 +38,6 @@ export default quizzesSlice.reducer;
 
 (DONE) - Export the selector as well as the action creators and reducer that your slice generates.
 
-(DONE)I - s added to the store.
+(DONE) - Is added to the store.
 
 */
