@@ -26,11 +26,15 @@ const topicsSlice = createSlice({
             console.log("current State");
             console.log(current(state));
         },
-        //Example payload = { id: '123', name: 'quiz name', topicId: '456', cardIds: ['1', '2', '3', ...]} (the same as addQuiz)
-        addQuizId(state, action) {
+    },
+    //NOTE!! You would use extraReducers when you are dealing with an action that you have already defined somewhere else. The most common examples are responding to a createAsyncThunk action and responding to an action from another slice. It uses the name of the slice, plus the action name (e.g. 'quizzes/addQuiz')
+    extraReducers: {
+        //When addQuiz goes off, we then assign the quiz’s id to the quizIds array of the topic with which the newly created quiz is associated
+        //Example payload -  { id: '123', name: 'quiz name', topicId: '456', cardIds: ['1', '2', '3', ...]} (the same as addQuiz)
+        ['quizzes/addQuiz']: (state, action) => {
             const { id, topicId } = action.payload;
             console.log(current(state).topics);
-            
+
             state.topics[topicId].quizIds.push(id);
             console.log(current(state).topics);
         }

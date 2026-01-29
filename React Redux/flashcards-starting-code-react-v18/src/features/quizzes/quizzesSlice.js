@@ -13,6 +13,8 @@ const quizzesSlice = createSlice({
             const quiz = {
                 ...action.payload
             };
+            console.log("quiz");
+            console.log(quiz);
 
             state.quizzes[action.payload.id] = quiz;
         }
