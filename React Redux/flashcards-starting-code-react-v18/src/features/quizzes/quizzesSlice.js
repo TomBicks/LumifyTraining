@@ -13,8 +13,6 @@ const quizzesSlice = createSlice({
             const quiz = {
                 ...action.payload
             };
-            console.log("quiz");
-            console.log(quiz);
 
             state.quizzes[action.payload.id] = quiz;
         }
@@ -22,15 +20,9 @@ const quizzesSlice = createSlice({
 });
 
 //Selectors
-export const selectAllQuizzes = (state) => state.quizzes.quizzes;
-console.log("initialState:");
-console.log(initialState);
-console.log("initialState.topics:");
-console.log(initialState.topics);
+export const selectAllQuizzes = (state) => state.quizzes;
 
 //Exports
-console.log("quizzesSlice:");
-console.log(quizzesSlice);
 export const { addQuiz } = quizzesSlice.actions;
 export default quizzesSlice.reducer;
 

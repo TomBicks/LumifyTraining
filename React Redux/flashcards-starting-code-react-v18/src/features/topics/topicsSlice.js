@@ -33,9 +33,9 @@ const topicsSlice = createSlice({
         //Example payload -  { id: '123', name: 'quiz name', topicId: '456', cardIds: ['1', '2', '3', ...]} (the same as addQuiz)
         ['quizzes/addQuiz']: (state, action) => {
             const { id, topicId } = action.payload;
-            console.log(current(state).topics);
 
             state.topics[topicId].quizIds.push(id);
+            console.log("current(state).topics");
             console.log(current(state).topics);
         }
     }
@@ -53,14 +53,14 @@ const topicsSlice = createSlice({
 This means that 'state.topic' retrieves the object containing 'topics' and 'favouriteTopics' objects, and 'state.topics.topics' retrieves the empty topics object*/
 //Thus, to have the selector retrieve the nested topics object, which will contain all the individual topic objects, we output 'state.topics.topics'
 export const selectAllTopics = (state) => state.topics.topics;
-console.log("initialState:");
-console.log(initialState);
-console.log("initialState.topics:");
-console.log(initialState.topics);
+//console.log("initialState:");
+//console.log(initialState);
+//console.log("initialState.topics:");
+//console.log(initialState.topics);
 
 //Exports
-console.log("topicsSlice:");
-console.log(topicsSlice);
+//console.log("topicsSlice:");
+//console.log(topicsSlice);
 export const { addTopic } = topicsSlice.actions;
 export default topicsSlice.reducer;
 

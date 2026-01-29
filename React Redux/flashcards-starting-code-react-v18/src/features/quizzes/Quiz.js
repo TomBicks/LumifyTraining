@@ -10,10 +10,6 @@ export default function Quiz() {
   const quizzes = useSelector(selectAllQuizzes);
   const { quizId } = useParams();
   const quiz = quizzes[quizId];
-  console.log("quizzes");
-  console.log(quizzes);
-  console.log("quiz");
-  console.log(quiz);
 
   if(!quiz) {
     return <Navigate to={ROUTES.quizzesRoute()} replace/>
