@@ -1,10 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { current } from '@reduxjs/toolkit'
 
 //NOTE!! Topics' property quizIds hold references to quizzes, which in turn hold cardIds as references to cards
-//NOTE/TODO!! the empty topics object here in initialState will in turn be filled with another topics object, leading to the desired nested topics object structure. but *why* is there now a topics object within another topcis object???
+//TODO!! the empty topics object here in initialState will in turn be filled with another topics object, leading to the desired nested topics object structure. but *why* is there now a topics object within another topcis object???
 const initialState = {
-    //ERROR!! Having 'topics: {}' inside here causes an issue at Topics.js with 'topic.quizIds.length' in a topics.map function; could this mean the initialState is supposed to be completely empty?
-    //And yet, the selector passes out 'state.topics'; shouldn't that mean it should work???
     topics: {},
     //DEBUG CODE!! Testing where the initial state stems from
     favouriteTopics: {}
@@ -18,9 +17,41 @@ const topicsSlice = createSlice({
         addTopic(state, action) {
             const { id, name, icon } = action.payload;
 
+            const test = {
+                [id]: {
+                    id: id,
+                    name: name,
+                    icon: icon,
+                    quizIds: []
+                }
+            }
+            console.log("test");
+            console.log(test);
+
+            const testHolder = {
+                topics: {}
+            }
+            console.log("testHolder");
+            console.log(testHolder);
+
+            testHolder.topics = test;
+            console.log("testHolder");
+            console.log(testHolder);
+
+            console.log("current State");
+            console.log(current(state));
+            //state.topics = test;
+            //Spreading causes the issue with the variable name. If it's just state.topics = test, it works fine, overwriting notwithstanding
+            state.topics = {
+                ...state.topics,
+                test
+            }
+            console.log("current State");
+            console.log(current(state));
+
             //NOTE!! Remember, can't use .push for an object
             //NOTE!! If we store the object we're attemtping to create into a variable and add it to state.topics, it'll be an object with the name of the variable (e.g. state.topics.topics.topic.[id], rather than just getting added into the nested topics object)
-            state.topics = {
+            /*state.topics = {
                 ...state.topics, 
                 [id]: {
                     id: id,
@@ -28,14 +59,27 @@ const topicsSlice = createSlice({
                     icon: icon,
                     quizIds: []
                 }
-            };
+            };*/
+        },
+        //Example payload = { id: '123', name: 'quiz name', topicId: '456', cardIds: ['1', '2', '3', ...]} (the same as addQuiz)
+        addQuizId(state, action) {
+            const { id, topicId } = action.payload;
+            
+            /*state.topics = {
+                ...state.topics,
+                [topicId]: {
+                    id: ...state.topics.[topicId].id,
+                    name: ...state.topics.[topicId].name,
+                    icon: ...state.topics.[topicId].icon,
+                    quizIds: [...state.topics.[topicId].quizIds, id]
+                }
+            }*/
         }
     }
 });
 
 //Selectors
 //TODO!! Considered Reselect package library? Provides Selector functions that are "Memoized"
-//"Create a selector that selects the topics object nested within initialState."
 /*NOTE!! retrieving 'state' from this selector looks like;
 {
     topics: {
@@ -64,7 +108,6 @@ export default topicsSlice.reducer;
 (DONE) - Has initial state consisting of an object that includes one property, topics, which corresponds to an empty object. This inner topics object will eventually hold all topics keyed by id.
 
 (DONE???) - Has an addTopic action. You can expect the payload for this action to look like {id: '123456', name: 'name of topic', icon: 'icon url'}. Store these values in the state as a new topic object.
-    - Does state.push work for an object here, using Immer?
 
 (DONE) - Each topic object added to the state should also have a quizIds property, which will correspond to an array containing the ids of each quiz associated with the topic. When a topic is first created, it won’t have any associated quizzes, but you should still create an empty quizIds array so that all topics in the state conform to the same shape.
 
