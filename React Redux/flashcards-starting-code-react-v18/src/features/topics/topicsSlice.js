@@ -15,68 +15,24 @@ const topicsSlice = createSlice({
     reducers: {
         //Example payload = {id: '123456', name: 'name of topic', icon: 'icon url'}
         addTopic(state, action) {
-            const { id, name, icon } = action.payload;
-
-            //Create an object
-            const test = {
-                id: id,
-                name: name,
-                icon: icon,
+            //Skips needing to destructure; spread payload should already have the three properties we need (excluding quizIds) (does mean we need action.payload.id below though)
+            const topic = {
+                ...action.payload,
                 quizIds: []
-            }
-            console.log("test");
-            console.log(test);
-
-            const testHolder = {
-                topics: {}
-            }
-            console.log("testHolder");
-            console.log(testHolder);
-
-            testHolder.topics = test;
-            console.log("testHolder");
-            console.log(testHolder);
-
-            console.log("current State");
-            console.log(current(state));
-            //state.topics = test;
-            //Spreading causes the issue with the variable name. If it's just state.topics = test, it works fine, overwriting notwithstanding
-            /*state.topics = {
-                ...state.topics,
-                test
-            }*/
+            };
 
             //Shove the object in at the desired id; this is how to do it with an object mutably, which we don't have to worry about because createSlice has Immer inbuilt
-            state.topics[id] = test;
+            state.topics[action.payload.id] = topic;
             console.log("current State");
             console.log(current(state));
-
-
-            //NOTE!! Remember, can't use .push for an object
-            //NOTE!! If we store the object we're attemtping to create into a variable and add it to state.topics, it'll be an object with the name of the variable (e.g. state.topics.topics.topic.[id], rather than just getting added into the nested topics object)
-            /*state.topics = {
-                ...state.topics, 
-                [id]: {
-                    id: id,
-                    name: name,
-                    icon: icon,
-                    quizIds: []
-                }
-            };*/
         },
         //Example payload = { id: '123', name: 'quiz name', topicId: '456', cardIds: ['1', '2', '3', ...]} (the same as addQuiz)
         addQuizId(state, action) {
             const { id, topicId } = action.payload;
+            console.log(current(state).topics);
             
-            /*state.topics = {
-                ...state.topics,
-                [topicId]: {
-                    id: ...state.topics.[topicId].id,
-                    name: ...state.topics.[topicId].name,
-                    icon: ...state.topics.[topicId].icon,
-                    quizIds: [...state.topics.[topicId].quizIds, id]
-                }
-            }*/
+            state.topics[topicId].quizIds.push(id);
+            console.log(current(state).topics);
         }
     }
 });

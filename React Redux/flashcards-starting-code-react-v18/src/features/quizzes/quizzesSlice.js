@@ -10,17 +10,11 @@ const quizzesSlice = createSlice({
     reducers: {
         //Example payload = { id: '123', name: 'quiz name', topicId: '456', cardIds: ['1', '2', '3', ...]}
         addQuiz(state, action) {
-            const { id, name, topicId, cardIds } = action.payload;
-
-            state.quizzes = {
-                ...state.quizzes, 
-                [id]: {
-                    id: id,
-                    name: name,
-                    topicId: topicId,
-                    cardIds: cardIds
-                }
+            const quiz = {
+                ...action.payload
             };
+
+            state.quizzes[action.payload.id] = quiz;
         }
     }
 });
