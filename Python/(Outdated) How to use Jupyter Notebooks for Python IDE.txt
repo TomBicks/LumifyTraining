@@ -1,0 +1,6 @@
+To use Jupyter Notebooks for Windows, an IDE that will allow you to develop and run python scripts on your machine:
+	1. cd into your desired folder in cmd
+	2. type "activate base" in order to access the Conda Package Manager environment
+	3. Once there (you'll see "(base)" written at the start of the line), then type "jupyter notebook"
+	4. Copy and access the localhost link that shows up
+	5. Don't close the cmd window until you are done, otherwise the host connection is severed
