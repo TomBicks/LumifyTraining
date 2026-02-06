@@ -1,0 +1,23 @@
+Questions for Krish:
+- Why are mutable complex data types passed in as arguments able to change the original's values, even if assign that list to another variable, but when we pass in primitive data types in argument, referring to them inherently refers to a local variable?
+	- Is it just as simple as primitive data types are passed by value, but complex data types are passed by reference? Always?
+	- ANSWER - So strings, ints, floats; these are actually immutable; same with tuples. This is why they act differently when we pass them in as arguments; why some are able to be changed, whilst others are only local instances
+
+- Why would we have a function that accepts other functions as an input, only to invoke those functions? Isn't it an obtuse way of calling those functions? What is the benefit?
+	-  ANSWER - It'll make more sense when I see the applications of these higher-order functions (functions that return functions)
+
+- If lambda functions are used but not assigned to a variable, are they discarded once they've been invoked in that same line?
+
+- Does a function which iterates 3 times, always, no matter the input, considered O(1) or O(n)
+	- It doesn't scale with an input, only a static amount, unrelated
+
+- When two functions that both use for loops proportional to a range, but one runs in half the iterations as the other, are they both listed as O(n) (rather than, say, O(n/2) because Big O Notation doesn't care about granular improvements like half of n? It wants stuff like, entire magnitudes less
+	- It's because N is assumed, theoretically, to be humongous, that we don't care about the "lower order terms and constants". For example, n + 1000 means little if n = 10^15. Likewise, presumably, if n = 10^15, n/2 is also insignificant? But it's half, isn't that worth mentioning???
+
+- Why is the exam prep meeting on the 27th of Feb; doesn't the course end by the end of Feb? Is this for people that book their final exam on the 28th?
+	- ANSWER - He doesn't see when the courses finish; it's not specifically for my course, so it's not much use to me. Though he did mention I can request extensions if need be
+
+- When can I book the exam?
+	- Apparently it's expected I have finished the entire unit before I request an exam voucher and it gets approved
+	- Is then the exam's possible to do after feb?
+	- ANSWER - He has marked it as approved, which means it'll go on to the admin team to then buy a voucher and send it to me. I can then sign up on TestNow, and book my date for the exam
